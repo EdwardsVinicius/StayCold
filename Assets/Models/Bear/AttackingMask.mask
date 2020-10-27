@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AttackingMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Root
+    m_Weight: 1
+  - m_Path: Root/Chest1
+    m_Weight: 1
+  - m_Path: Root/Chest1/L_Arm2
+    m_Weight: 1
+  - m_Path: Root/Chest1/L_Arm2/L_Arm3
+    m_Weight: 1
+  - m_Path: Root/Chest1/L_Arm2/L_Arm3/L_Arm4
+    m_Weight: 1
+  - m_Path: Root/Chest1/Neck1
+    m_Weight: 1
+  - m_Path: Root/Chest1/Neck1/Head1
+    m_Weight: 1
+  - m_Path: Root/Chest1/R_Arm2
+    m_Weight: 1
+  - m_Path: Root/Chest1/R_Arm2/R_Arm3
+    m_Weight: 1
+  - m_Path: Root/Chest1/R_Arm2/R_Arm3/R_Arm4
+    m_Weight: 1
+  - m_Path: Root/L_leg1
+    m_Weight: 0
+  - m_Path: Root/L_leg1/L_leg2
+    m_Weight: 1
+  - m_Path: Root/L_leg1/L_leg2/L_leg3
+    m_Weight: 1
+  - m_Path: Root/R_leg1
+    m_Weight: 0
+  - m_Path: Root/R_leg1/R_leg2
+    m_Weight: 1
+  - m_Path: Root/R_leg1/R_leg2/R_leg3
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model/Body
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model/L_Arm
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model/L_Arm1
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model/L_foot
+    m_Weight: 1
+  - m_Path: Urso_Polar_Model/L_foot1
+    m_Weight: 1

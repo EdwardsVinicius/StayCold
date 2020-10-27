@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: ec92404cd83dfb547b4c45426a3f53f3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - MADE TOMMY Outline
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e8f8b6266d782a048b21590acadd46e2, type: 3}
+  - {fileID: 12800000, guid: 7813072ef58d86349ac3ba4c44abc1d7, type: 3}
+  - {fileID: 12800000, guid: 26fb2f6e6f09c184986face2bb8b6e99, type: 3}
+  - {fileID: 12800000, guid: 574593be5973fa547a4af32809478cde, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
