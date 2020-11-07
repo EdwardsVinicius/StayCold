@@ -144,11 +144,12 @@ public class Player : MonoBehaviour
         //Debug.Log("Collision entered");
         if (collision.gameObject.tag == "Enemy" && !immortal)
         {
+            anim.SetTrigger("damage");
             LoseHealth(attackDamage);
-            slider.SetHealth(health);
+            //slider.SetHealth(health);
             if (health <= 0)
             {
-                anim.SetTrigger("death");
+                anim.SetBool("death", true);
                 isDead = true;
                 speed = 0;
             }
@@ -159,7 +160,7 @@ public class Player : MonoBehaviour
             slider.SetHealth(health);
             if (health <= 0)
             {
-                anim.SetTrigger("death");
+                anim.SetBool("death", true);
                 isDead = true;
                 speed = 0;
             }
