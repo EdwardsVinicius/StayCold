@@ -31,7 +31,7 @@ public class Bear : MonoBehaviour
 
     private AudioSource[] sounds;
 
-    public LifeSlider slider;
+    //public LifeSlider slider;
 
     // Start is called before the first frame update
     void Start()
@@ -179,8 +179,11 @@ public class Bear : MonoBehaviour
     private void LoseHealth(int amount)
     {
         health -= amount;
-        slider.SetHealth(health);
-        if (health <= 0)
+        //slider.SetHealth(health);
+        if (health > 0){
+            anim.SetTrigger("bearDamage");
+        }
+        if (health <= 0 && !dead)
         {
             Death();
         }
@@ -188,6 +191,9 @@ public class Bear : MonoBehaviour
 
     private void Death()
     {
+        anim.SetBool("bearRunning", false);
+        anim.SetBool("bearHasSnowBall", false);
+        snowBall.SetActive(false);
         dead = true;
         anim.SetTrigger("bearDeath");
     }
