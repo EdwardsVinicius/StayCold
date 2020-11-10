@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -18,8 +19,14 @@ public class SwitchPlayer : MonoBehaviour
     private Vector3 originalLocalPosition;
     private Quaternion originalLocalRotation;
 
+    InputManager controls;
+
     private void Awake()
     {
+        controls = new InputManager();
+
+        controls.Gameplay.Switch.performed += context => getKeySwitch();
+
         follow = player1.transform;
         originalLocalPosition = follow.localPosition;
         originalLocalRotation = follow.localRotation;
@@ -36,13 +43,13 @@ public class SwitchPlayer : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown("x"))
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("dashing"))
-                return;
+        //if (Input.GetKeyDown("x"))
+        //{
+        //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("dashing"))
+        //        return;
                
-            SwitchPlayers();
-        }
+        //    SwitchPlayers();
+        //}
         
         followActivePlayer();
     }
@@ -75,6 +82,14 @@ public class SwitchPlayer : MonoBehaviour
         }
     }
 
+    void getKeySwitch()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("dashing"))
+            return;
+
+        SwitchPlayers();
+    }
+
     public void followActivePlayer()
     {
         transform.position = follow.position;
@@ -98,6 +113,16 @@ public class SwitchPlayer : MonoBehaviour
 
         //reset local position
         follow.localPosition = originalLocalPosition;
+    }
+
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
     }
 
 }

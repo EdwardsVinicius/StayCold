@@ -39,6 +39,42 @@ public class Player : MonoBehaviour
 
     public LifeSlider slider;
 
+    InputManager controls;
+    PlayerInput playerInput;
+    Vector2 move;
+
+    private void Awake()
+    {
+        controls = new InputManager();
+
+        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        //StartPoint script = startPoint.GetComponent<StartPoint>();
+        playerInput = GetComponent<PlayerInput>();
+
+        if (StartPoint.isMultiplayer)
+        {
+            playerInput.SwitchCurrentActionMap("Player_1");
+
+            controls.Player_1.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.Player_1.Move.canceled += ctx => move = Vector2.zero;
+
+            controls.Player_1.Attack.performed += ctx => Attack();
+        }
+        else
+        {
+            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+            controls.Gameplay.Attack.performed += ctx => Attack();
+        }
+
+        //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+        //controls.Gameplay.Attack.performed += ctx => Attack();
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +88,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        Attack();
+        //Attack();
         Slide();
     }
 
     private void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3(move.x, 0f, move.y).normalized;
 
         if (direction.magnitude > 0.1f && isMovable && !isDead)
         {
@@ -82,11 +119,12 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         //inserir bottão de ataque
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            sounds[0].Play();
-            StartCoroutine(ShowHitboxForSeconds());
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+
+        //}
+        sounds[0].Play();
+        StartCoroutine(ShowHitboxForSeconds());
     }
 
     private void Slide()
@@ -98,7 +136,17 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Z) && slideEnabled)
+            bool special;
+            if (StartPoint.isMultiplayer)
+            {
+                special = controls.Player_1.Special.triggered;
+            }
+            else
+            {
+                special = controls.Gameplay.Special.triggered;
+            }
+
+            if (special && slideEnabled)
             {
                 sounds[1].Play();
 
@@ -185,5 +233,38 @@ public class Player : MonoBehaviour
         health -= amount;
     }
 
+    private void OnEnable()
+    {
+        if (StartPoint.isMultiplayer)
+        {
+            controls.Player_1.Enable();
+        }
+        else
+        {
+            controls.Gameplay.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (StartPoint.isMultiplayer)
+        {
+            controls.Player_1.Disable();
+        }
+        else
+        {
+            controls.Gameplay.Disable();
+        }
+    }
+
+    //    void OnMove(CallbackContext context)
+    //    {
+    //        move = context.ReadValue<Vector2>();
+    //    }
+
+    //    void OnAttack(CallbackContext context)
+    //    {
+    //        Attack();
+    //    }
 }
 

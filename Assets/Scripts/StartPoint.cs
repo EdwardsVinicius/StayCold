@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class StartPoint: MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class StartPoint: MonoBehaviour
     public GameObject[] multiplayer;
     public GameObject singleplayer;
 
-    public bool isMultiplayer = false;
+
+    public static bool isMultiplayer = true;
     void Awake()
     {
         if (isMultiplayer)
@@ -20,12 +22,14 @@ public class StartPoint: MonoBehaviour
 
         }
         else
+        {
             Instantiate(singleplayer, startPoint);
+        }
     }
-
 
     public void Reset()
     {
         singleplayer.transform.position = startPoint.position;
     }
+
 }

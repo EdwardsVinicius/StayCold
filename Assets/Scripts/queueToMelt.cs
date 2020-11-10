@@ -20,7 +20,7 @@ public class queueToMelt : MonoBehaviour
              || child.name == "Part5" || child.name == "Part6" || child.name == "Part7"
               || child.name == "Part8")
             {
-                print(child.name);
+                //print(child.name);
                 teste.Add(child.gameObject);
             }
             //child.gameObject.SetActive(false);

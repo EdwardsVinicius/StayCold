@@ -272,6 +272,7 @@ MonoBehaviour:
   limitTimer: 5
   upp: {x: 0, y: 0, z: 0}
   goingUp: 0
+  rebuiltBtn: {fileID: 0}
   queueToRebuilt: []
 --- !u!1 &4810703270349616551
 GameObject:

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bear : MonoBehaviour
 {
@@ -32,6 +33,47 @@ public class Bear : MonoBehaviour
     private AudioSource[] sounds;
 
     public LifeSlider slider;
+    public RebuiltIce rebuiltIce;
+
+    InputManager controls;
+    PlayerInput playerInput;
+    Vector2 move;
+
+    private void Awake()
+    {
+        controls = new InputManager();
+
+        playerInput = GetComponent<PlayerInput>();
+
+        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        //StartPoint script = startPoint.GetComponent<StartPoint>();
+
+        if (StartPoint.isMultiplayer)
+        {
+
+            playerInput.SwitchCurrentActionMap("Player_2");
+
+            controls.Player_2.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.Player_2.Move.canceled += ctx => move = Vector2.zero;
+
+            controls.Player_2.Attack.performed += ctx => Attack();
+
+        }
+        else
+        {
+            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+            controls.Gameplay.Attack.performed += ctx => Attack();
+
+        }
+
+        //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+        //controls.Gameplay.Attack.performed += ctx => Attack();
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +83,7 @@ public class Bear : MonoBehaviour
         hasSnowBall = false;
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
+        rebuiltIce = GameObject.Find("Calota").GetComponent<RebuiltIce>();
 
         sounds = GetComponents<AudioSource>();
     }
@@ -59,16 +102,17 @@ public class Bear : MonoBehaviour
             {
                 PlaceSnow();
             }
-            Attack();
+            //Attack();
         }
 
     }
 
     private void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3(move.x, 0f, move.y).normalized;
 
         if (direction.magnitude > 0.1f)
         {
@@ -91,8 +135,17 @@ public class Bear : MonoBehaviour
     }
     private void PickUpSnow()
     {
+        bool special;
+        if (StartPoint.isMultiplayer)
+        {
+            special = controls.Player_2.Special.triggered;
+        }
+        else
+        {
+            special = controls.Gameplay.Special.triggered;
+        }
         //inserir bottão de ataque
-        if (Input.GetKeyDown(KeyCode.Z) && !hasSnowBall)
+        if (special && !hasSnowBall)
         {
             sounds[0].Play();
 
@@ -111,12 +164,22 @@ public class Bear : MonoBehaviour
     {
         canPickUpSnowBall = false;
         yield return new WaitForSeconds(time);
+        rebuiltIce.rebuiltPlatform();
         canPickUpSnowBall = true;
     }
 
     private void PlaceSnow()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && hasSnowBall)
+        bool special;
+        if (StartPoint.isMultiplayer)
+        {
+            special = controls.Player_2.Special.triggered;
+        }
+        else
+        {
+            special = controls.Gameplay.Special.triggered;
+        }
+        if (special && hasSnowBall)
         {
             
             //Setar animator throwing
@@ -135,7 +198,7 @@ public class Bear : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !hasSnowBall)
+        if (!hasSnowBall)
         {
             //Setar animator attack 
             sounds[1].Play();
@@ -192,6 +255,29 @@ public class Bear : MonoBehaviour
         anim.SetTrigger("bearDeath");
     }
 
+    private void OnEnable()
+    {
+        if (StartPoint.isMultiplayer)
+        {
+            controls.Player_2.Enable();
+        }
+        else
+        {
+            controls.Gameplay.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (StartPoint.isMultiplayer)
+        {
+            controls.Player_2.Disable();
+        }
+        else
+        {
+            controls.Gameplay.Disable();
+        }
+    }
 
 }
 
