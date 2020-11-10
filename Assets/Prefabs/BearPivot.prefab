@@ -27,7 +27,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &5814302479016455646
@@ -82,6 +82,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5780057894857956453}
     m_Modifications:
+    - target: {fileID: 791749327, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f6e20129b8a6b147863d7d54ffa60b3, type: 3}
+    - target: {fileID: 791749327, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7386662714293310616, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
     - target: {fileID: 58612668023701377, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
       propertyPath: m_Layer
       value: 8

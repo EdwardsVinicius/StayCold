@@ -10,7 +10,7 @@ public class StartPoint: MonoBehaviour
     public GameObject singleplayer;
 
 
-    public static bool isMultiplayer = true;
+    public bool isMultiplayer = true;
     void Awake()
     {
         if (isMultiplayer)

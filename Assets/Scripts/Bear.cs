@@ -38,6 +38,7 @@ public class Bear : MonoBehaviour
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
+    StartPoint script;
 
     private void Awake()
     {
@@ -45,10 +46,10 @@ public class Bear : MonoBehaviour
 
         playerInput = GetComponent<PlayerInput>();
 
-        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        //StartPoint script = startPoint.GetComponent<StartPoint>();
+        GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        script = startPoint.GetComponent<StartPoint>();
 
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
 
             playerInput.SwitchCurrentActionMap("Player_2");
@@ -136,7 +137,7 @@ public class Bear : MonoBehaviour
     private void PickUpSnow()
     {
         bool special;
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             special = controls.Player_2.Special.triggered;
         }
@@ -171,7 +172,7 @@ public class Bear : MonoBehaviour
     private void PlaceSnow()
     {
         bool special;
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             special = controls.Player_2.Special.triggered;
         }
@@ -263,7 +264,7 @@ public class Bear : MonoBehaviour
 
     private void OnEnable()
     {
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             controls.Player_2.Enable();
         }
@@ -275,7 +276,7 @@ public class Bear : MonoBehaviour
 
     private void OnDisable()
     {
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             controls.Player_2.Disable();
         }

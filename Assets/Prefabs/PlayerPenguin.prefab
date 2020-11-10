@@ -426,8 +426,8 @@ AudioSource:
   m_GameObject: {fileID: 1885847061373348384}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7587065244548936666, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b6c14cf9851991b4e914605d9426e1d4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -568,7 +568,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Switch[/Keyboard/x,/MY-POWER CO.,LTD. 2In1 USB Joystick/button2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1885847062630584576
