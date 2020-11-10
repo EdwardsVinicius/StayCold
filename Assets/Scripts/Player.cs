@@ -42,16 +42,17 @@ public class Player : MonoBehaviour
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
+    StartPoint script;
 
     private void Awake()
     {
         controls = new InputManager();
 
-        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        //StartPoint script = startPoint.GetComponent<StartPoint>();
+        GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        script = startPoint.GetComponent<StartPoint>();
         playerInput = GetComponent<PlayerInput>();
 
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             playerInput.SwitchCurrentActionMap("Player_1");
 
@@ -137,7 +138,7 @@ public class Player : MonoBehaviour
         else
         {
             bool special;
-            if (StartPoint.isMultiplayer)
+            if (script.isMultiplayer)
             {
                 special = controls.Player_1.Special.triggered;
             }
@@ -192,6 +193,7 @@ public class Player : MonoBehaviour
         //Debug.Log("Collision entered");
         if (collision.gameObject.tag == "Enemy" && !immortal)
         {
+            sounds[2].Play();
             anim.SetTrigger("damage");
             LoseHealth(attackDamage);
             //slider.SetHealth(health);
@@ -236,7 +238,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             controls.Player_1.Enable();
         }
@@ -248,7 +250,7 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        if (StartPoint.isMultiplayer)
+        if (script.isMultiplayer)
         {
             controls.Player_1.Disable();
         }
