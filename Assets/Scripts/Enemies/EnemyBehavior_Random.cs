@@ -79,4 +79,17 @@ public class EnemyBehavior_Random : MonoBehaviour
 
         transform.eulerAngles += new Vector3(0f, 180f, 0f);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.tag == "Hitbox")
+        {
+            ActiveDeathState();
+        }
+    }
+
+    public void ActiveDeathState()
+    {
+        Destroy(gameObject);
+    }
 }

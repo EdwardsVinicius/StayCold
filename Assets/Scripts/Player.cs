@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        slider = GameObject.Find("HolderPenguinHUD/Slider").GetComponent<LifeSlider>();
+
         controller = GetComponent<CharacterController>();
         anim = penguim.gameObject.GetComponent<Animator>();
 
@@ -184,6 +186,5 @@ public class Player : MonoBehaviour
     {
         health -= amount;
     }
-
 }
 
