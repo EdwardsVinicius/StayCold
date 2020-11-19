@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7122738998404707041}
   m_Layer: 0
   m_Name: StartPoint
-  m_TagString: Untagged
+  m_TagString: StartPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {fileID: 7122738998404707070}
-  player:
+  multiplayer:
   - {fileID: 1885847061373348384, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
   - {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
+  singleplayer: {fileID: 631200345242464583, guid: bd8d6ec5f34dfad498202cdc43d9250f, type: 3}
   isMultiplayer: 1

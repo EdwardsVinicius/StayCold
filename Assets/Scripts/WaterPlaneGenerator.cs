@@ -46,8 +46,6 @@ public class WaterPlaneGenerator : MonoBehaviour
             });
         }
         
-        print("verticies = "+verticies);
-        print("normals = "+normals);
 
         m.SetVertices(verticies);
         m.SetNormals(normals);

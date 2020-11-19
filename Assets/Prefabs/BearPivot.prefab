@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3732818983293266797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932814030054464628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d6b0f1101eee92d4280140567004dcd6, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5814302479016455646
 GameObject:
   m_ObjectHideFlags: 0
@@ -52,6 +82,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5780057894857956453}
     m_Modifications:
+    - target: {fileID: 791749327, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f6e20129b8a6b147863d7d54ffa60b3, type: 3}
+    - target: {fileID: 791749327, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7386662714293310616, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
     - target: {fileID: 58612668023701377, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -218,6 +256,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+--- !u!1 &2932814030054464628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 202783817996134518, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
+  m_PrefabInstance: {fileID: 3054315881161487362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2932814030054464629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 202783817996134519, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}

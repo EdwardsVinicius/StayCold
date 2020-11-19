@@ -14,6 +14,8 @@ public class RebuiltIce : MonoBehaviour
     public Vector3 upp;
     public bool goingUp;
 
+    public Button rebuiltBtn;
+
     [SerializeField]
     private List<GameObject> queueToRebuilt;
 
@@ -35,45 +37,49 @@ public class RebuiltIce : MonoBehaviour
             }
         }
         goingUp = false;
+
+        print(queueToRebuilt.Count);
     }
 
     void Update()
     {
         if(goingUp)
         {
-            timer += Time.deltaTime;
-            if(timer >= limitTimer)
+            int x = 0;
+            while (goingUp == true)
             {
-                timer = 0f;
-                /*gameObject.transform.position += upp;
-                if(gameObject.transform.position.y >= 0)
+                if(queueToRebuilt[x].activeInHierarchy == false)
+                {
+                    queueToRebuilt[x].gameObject.SetActive(true);
+                    timer += Time.deltaTime;
+                    if(timer >= limitTimer){
+                        goingUp = false;
+                    }else{
+                        queueToRebuilt[x].gameObject.transform.position += upp;
+                        if (queueToRebuilt[x].gameObject.transform.position.y >= 0)
+                        {
+                            goingUp = false;
+                        }
+                    }
+                }
+                else if (x >= 6)
                 {
                     goingUp = false;
-                }*/
+                }
+                x++;
             }
         }
+        // else{
+        //     timer += Time.deltaTime;
+        //     if(timer >= limitTimer){
+        //         timer = 0f;
+        //     }
+        // }
     }
 
     public void rebuiltPlatform()
     {
-        //gameObject.transform.position = new Vector3Int(1,1,1);
-        //gameObject.SetActive(true);
-        int x = 0;
         goingUp = true;
-        while (goingUp == true)
-        {
-            print(queueToRebuilt[x]);
-            if(queueToRebuilt[x].activeInHierarchy == false)
-            {
-                queueToRebuilt[x].gameObject.transform.position += upp;
-                if (queueToRebuilt[x].gameObject.transform.position.y >= 0)
-                {
-                    goingUp = false;
-                }
-            }
-
-            x++;
-        }
     }
 
 }
