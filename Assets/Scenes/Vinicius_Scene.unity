@@ -139,14 +139,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water
       objectReference: {fileID: 0}
-    - target: {fileID: 4985474024829424091, guid: 730de380b7119bb479d7c285176a25e9, type: 3}
-      propertyPath: m_TagString
-      value: Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 4985474024829424091, guid: 730de380b7119bb479d7c285176a25e9, type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4985474024829424103, guid: 730de380b7119bb479d7c285176a25e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1287,10 +1279,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4639698833762513736, guid: b2ad54fd485c07e40ad036339a2b0470, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -6478536213147159724, guid: 3f6e5375dc2858e40861b6d0354fe9a5, type: 3}
     - target: {fileID: 9179398262929098234, guid: b2ad54fd485c07e40ad036339a2b0470, type: 3}
       propertyPath: m_Name
       value: "Adere\xE7os"
@@ -1352,42 +1340,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartPoint
       objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707040, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: m_TagString
-      value: StartPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707040, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: singleplayer.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: multiplayer.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: singleplayer.Array.data[0]
-      value: 
-      objectReference: {fileID: 631200345242464583, guid: bd8d6ec5f34dfad498202cdc43d9250f, type: 3}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: multiplayer.Array.data[0]
-      value: 
-      objectReference: {fileID: 1885847061373348384, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: multiplayer.Array.data[1]
-      value: 
-      objectReference: {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: isMultiplayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
-      propertyPath: singleplayer
-      value: 
-      objectReference: {fileID: 631200345242464583, guid: bd8d6ec5f34dfad498202cdc43d9250f, type: 3}
     - target: {fileID: 7122738998404707070, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.59

@@ -283,6 +283,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BearPivot
       objectReference: {fileID: 0}
+    - target: {fileID: 5898586628189922457, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 556b8949f2f7b6c41a842eb89d6e6f7e, type: 3}
+    - target: {fileID: 5898586628189922457, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -936367559383098354, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
 --- !u!1 &8219605944776295747 stripped

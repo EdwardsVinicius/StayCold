@@ -245,6 +245,7 @@ public class Bear : MonoBehaviour
         health -= amount;
         //slider.SetHealth(health);
         if (health > 0){
+            sounds[2].Play();
             anim.SetTrigger("bearDamage");
         }
         if (health <= 0 && !dead)
