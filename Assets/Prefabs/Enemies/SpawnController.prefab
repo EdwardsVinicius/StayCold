@@ -76,7 +76,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &95355172876429702
 Transform:
   m_ObjectHideFlags: 0
@@ -111,21 +111,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horde:
-  - enemyObject: {fileID: 8763532587549057497, guid: 187bdc4b1403de346aa819b973fefd45, type: 3}
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
     SpawnPositionIndex: 2
     numberOfEnemies: 3
     timeBetweenEnemies: 5
     timeToTheNextHorde: 10
-  - enemyObject: {fileID: 1614484610296924591, guid: 8baa67456e3c87a4a814051cf6559541, type: 3}
+  - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
     SpawnPositionIndex: 5
     numberOfEnemies: 2
     timeBetweenEnemies: 7
     timeToTheNextHorde: 10
-  - enemyObject: {fileID: 8763532587549057497, guid: 187bdc4b1403de346aa819b973fefd45, type: 3}
-    SpawnPositionIndex: 7
-    numberOfEnemies: 5
-    timeBetweenEnemies: 3
-    timeToTheNextHorde: 0
+  victory: {fileID: 0}
 --- !u!1 &95355173020838301
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,13 +28,15 @@ public class EnemyStatus : MonoBehaviour
         if (collision.gameObject.tag == "Hitbox")
         {
             //sounds[0].Play();
-            LoseHealth(10);
+            health -= 10;
+            //LoseEnemyHealth(10);
         }
 
     }
 
-    private void LoseHealth(int amount)
+    private void LoseEnemyHealth(int amount)
     {
+        Debug.Log("entrouEnemy");
         health -= amount;
     }
 }
