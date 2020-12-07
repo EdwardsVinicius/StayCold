@@ -12,6 +12,8 @@ public class EnemyBehavior_Random : MonoBehaviour
     public float idleTime = 2;
     public float deathTime = 1;
     public GameObject deathSmokeVFXSample;
+    public GameObject leftFootVFXSample;
+    public GameObject rightFootVFXSample;
 
     private float idleTimePassed = 0;
     private float goToX;
@@ -132,7 +134,11 @@ public class EnemyBehavior_Random : MonoBehaviour
         deathSmoke.SetActive(true);
         deathSmoke.transform.parent = GameObject.Find("ExplosionInstances").transform;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
+
+        var eSC = FindObjectOfType<EnemySpawnController>();
+        if (eSC != null)
+            eSC.DecreaceEnemyCount();
 
         Destroy(gameObject);
     }
@@ -140,5 +146,21 @@ public class EnemyBehavior_Random : MonoBehaviour
     public bool GetDeathState()
     {
         return deathState;
+    }
+
+    public void InstantiateFootstep(int whichSide)
+    {
+        if(whichSide == 0) // direita
+        {
+            GameObject rightFoot = Instantiate(rightFootVFXSample, rightFootVFXSample.transform.position, transform.rotation);
+            rightFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            rightFoot.SetActive(true);
+        }
+        else
+        {
+            GameObject leftFoot = Instantiate(leftFootVFXSample, leftFootVFXSample.transform.position, transform.rotation);
+            leftFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            leftFoot.SetActive(true);
+        }
     }
 }

@@ -18,6 +18,9 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     public GameObject selfDestructionVFXSample;
     public GameObject deathSmokeVFXSample;
 
+    public GameObject leftFootVFXSample;
+    public GameObject rightFootVFXSample;
+
     private float goToX;
     private float goToZ;
     private float seekTimer;
@@ -205,7 +208,11 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         deathSmoke.SetActive(true);
         deathSmoke.transform.parent = GameObject.Find("ExplosionInstances").transform;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
+
+        var eSC = FindObjectOfType<EnemySpawnController>();
+        if(eSC != null)
+            eSC.DecreaceEnemyCount();
 
         Destroy(gameObject);
     }
@@ -222,5 +229,31 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         newExplosion.transform.parent = GameObject.Find("ExplosionInstances").transform;
         
         explosionCount++;
+    }
+
+    public void InstantiateFootstep(int whichSide)
+    {
+        if (whichSide == 0) // direita
+        {
+            GameObject rightFoot = Instantiate(rightFootVFXSample, rightFootVFXSample.transform.position, transform.rotation);
+            rightFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            rightFoot.SetActive(true);
+        }
+        else if (whichSide == 1)
+        {
+            GameObject leftFoot = Instantiate(leftFootVFXSample, leftFootVFXSample.transform.position, transform.rotation);
+            leftFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            leftFoot.SetActive(true);
+        }
+        else
+        {
+            GameObject rightFoot = Instantiate(rightFootVFXSample, rightFootVFXSample.transform.position, transform.rotation);
+            rightFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            rightFoot.SetActive(true);
+
+            GameObject leftFoot = Instantiate(leftFootVFXSample, leftFootVFXSample.transform.position, transform.rotation);
+            leftFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            leftFoot.SetActive(true);
+        }
     }
 }

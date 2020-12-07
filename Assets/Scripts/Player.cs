@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,12 @@ public class Player : MonoBehaviour
     private float turnMoveTime = .1f;
     private float turnMoveVelocity;
     private CharacterController controller;
+    public GameObject attackHitVFXSample;
     public GameObject hitbox;
     public GameObject dashHitbox;
     private bool slideEnabled = true;
     public float attackDuration = 0.3f;
+    public float vfxHitTimer = 0.15f;
     private float attackLag = 0f;
 
     [SerializeField]
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
     public GameObject penguim;
     private Animator anim;
     private bool isDashing = false;
+    private bool isAttacking = false;
     public bool isDead = false;
     private float dashTime = -1;
     private float dashDuration = 0.3f;
@@ -121,12 +125,20 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
+        if (isAttacking)
+            return;
         //inserir bottão de ataque
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
 
         //}
         sounds[0].Play();
+        ActivateHitbox();
+    }
+
+    public void ActivateHitbox()
+    {
+        isAttacking = true;
         StartCoroutine(ShowHitboxForSeconds());
     }
 
@@ -223,13 +235,25 @@ public class Player : MonoBehaviour
     {
         //yield return new WaitForSeconds(attackLag);
         //isMovable = false;
+
         anim.SetTrigger("attack");
         speed /= 3;
-        hitbox.SetActive(true);
-        yield return new WaitForSeconds(attackDuration);
+
+        StartCoroutine(ActivateHitVFX());
+
+        yield return new WaitForSeconds(attackDuration + vfxHitTimer);
         hitbox.SetActive(false);
         //isMovable = true;
+        isAttacking = false;
         speed *= 3;
+    }
+
+    IEnumerator ActivateHitVFX()
+    {
+        yield return new WaitForSeconds(vfxHitTimer);
+        GameObject attackHitVFX = Instantiate(attackHitVFXSample, attackHitVFXSample.transform.position, attackHitVFXSample.transform.rotation);
+        attackHitVFX.SetActive(true);
+        hitbox.SetActive(true);
     }
 
     private void LosePlayerHealth(int amount)
