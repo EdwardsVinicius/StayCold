@@ -6,13 +6,7 @@ using UnityEngine;
 public class ShootBehavior : MonoBehaviour
 {
     private Vector3 targetDirection;
-    private float timeToDestroy;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private float timeToDeactivate;
 
     // Update is called once per frame
     void Update()
@@ -20,25 +14,33 @@ public class ShootBehavior : MonoBehaviour
         if (targetDirection != null)
         {
             transform.position += targetDirection * Time.deltaTime;
-            timeToDestroy -= Time.deltaTime;
+            timeToDeactivate -= Time.deltaTime;
         }
 
-        if (timeToDestroy < 0)
+        if (timeToDeactivate < 0)
         {
-            StartDestroy();
+            StartDeactivation();
         }
     }
 
-    public void DefineParams(Vector3 direction, float speed, float _timeToDestroy)
+    public void DefineParams(Vector3 direction, float speed, float _timeToDeactivate)
     {
-        timeToDestroy = _timeToDestroy;
+        timeToDeactivate = _timeToDeactivate;
 
         if (direction != null)
             targetDirection = (direction - transform.position).normalized * speed;
     }
 
-    private void StartDestroy()
+    private void StartDeactivation()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            StartDeactivation();
+        }
     }
 }

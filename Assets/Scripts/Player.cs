@@ -48,6 +48,18 @@ public class Player : MonoBehaviour
     Vector2 move;
     StartPoint script;
 
+    [System.Serializable]
+    public class VFXPool
+    {
+        public string tag;
+        public GameObject VFXPrefab;
+        public int size;
+    }
+
+    [Header("DictonaryPools")]
+    public List<VFXPool> pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+
     private void Awake()
     {
         controls = new InputManager();
@@ -89,6 +101,21 @@ public class Player : MonoBehaviour
         anim = penguim.gameObject.GetComponent<Animator>();
 
         sounds = GetComponents<AudioSource>();
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+        foreach (VFXPool pool in pools)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.VFXPrefab);
+                objectPool.Enqueue(obj);
+            }
+
+            poolDictionary.Add(pool.tag, objectPool);
+        }
     }
 
     // Update is called once per frame
@@ -204,7 +231,9 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
-        if (collision.gameObject.tag == "Enemy" && !immortal)
+        if ((collision.gameObject.tag == "Enemy" ||
+            collision.gameObject.tag == "Projectile")
+            && !immortal)
         {
             sounds[2].Play();
             anim.SetTrigger("damage");
@@ -251,8 +280,17 @@ public class Player : MonoBehaviour
     IEnumerator ActivateHitVFX()
     {
         yield return new WaitForSeconds(vfxHitTimer);
-        GameObject attackHitVFX = Instantiate(attackHitVFXSample, attackHitVFXSample.transform.position, attackHitVFXSample.transform.rotation);
+
+        GameObject attackHitVFX = poolDictionary["attackHitVFX"].Dequeue();
+
         attackHitVFX.SetActive(true);
+        attackHitVFX.transform.position = attackHitVFXSample.transform.position;
+        attackHitVFX.transform.eulerAngles = attackHitVFXSample.transform.rotation.eulerAngles;
+        attackHitVFX.GetComponent<ParticleSystem>().Clear();
+        attackHitVFX.GetComponent<ParticleSystem>().Play();
+
+        poolDictionary["attackHitVFX"].Enqueue(attackHitVFX);
+
         hitbox.SetActive(true);
     }
 

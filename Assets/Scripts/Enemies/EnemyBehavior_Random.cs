@@ -5,10 +5,6 @@ using UnityEngine;
 public class EnemyBehavior_Random : MonoBehaviour
 {
     public float speed;
-    public float minX;
-    public float minZ;
-    public float maxX;
-    public float maxZ;
     public float idleTime = 2;
     public float deathTime = 1;
     public GameObject deathSmokeVFXSample;
@@ -25,11 +21,44 @@ public class EnemyBehavior_Random : MonoBehaviour
 
     private RaycastHit checkGround;
     private Animator anim;
+    private GameObject topRight;
+    private GameObject bottomLeft;
+
+    [System.Serializable]
+    public class VFXPool
+    {
+        public string tag;
+        public GameObject VFXPrefab;
+        public int size;
+    }
+
+    [Header("DictonaryPools")]
+    public List<VFXPool> pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject edges = GameObject.Find("Edges");
+        topRight = edges.transform.Find("TopRight").gameObject;
+        bottomLeft = edges.transform.Find("BottomLeft").gameObject;
+
         anim = GetComponent<Animator>();
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+        foreach (VFXPool pool in pools)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.VFXPrefab);
+                objectPool.Enqueue(obj);
+            }
+
+            poolDictionary.Add(pool.tag, objectPool);
+        }
     }
 
     // Update is called once per frame
@@ -84,8 +113,8 @@ public class EnemyBehavior_Random : MonoBehaviour
 
     private Vector3 GetNewPosition()
     {
-        goToX = Random.Range(minX, maxX);
-        goToZ = Random.Range(minZ, maxZ);
+        goToX = Random.Range(bottomLeft.transform.position.x, topRight.transform.position.x);
+        goToZ = Random.Range(bottomLeft.transform.position.z, topRight.transform.position.z);
 
         Vector3 newPos = new Vector3(goToX, transform.position.y, goToZ);
 
@@ -112,8 +141,6 @@ public class EnemyBehavior_Random : MonoBehaviour
         Vector3 direction = (newPos - transform.position);
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10f);
-
-        transform.eulerAngles += new Vector3(0f, 0f, 0f);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -140,7 +167,13 @@ public class EnemyBehavior_Random : MonoBehaviour
         if (eSC != null)
             eSC.DecreaceEnemyCount();
 
+        DestroyAllVFXInstances();
         Destroy(gameObject);
+    }
+
+    private void DestroyAllVFXInstances()
+    {
+
     }
 
     public bool GetDeathState()
@@ -150,17 +183,34 @@ public class EnemyBehavior_Random : MonoBehaviour
 
     public void InstantiateFootstep(int whichSide)
     {
-        if(whichSide == 0) // direita
+        if (poolDictionary == null)
         {
-            GameObject rightFoot = Instantiate(rightFootVFXSample, rightFootVFXSample.transform.position, transform.rotation);
-            rightFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            return;
+        }
+
+        if (whichSide == 0) // direita
+        {
+            GameObject rightFoot = poolDictionary["rightFootstep"].Dequeue();
+
             rightFoot.SetActive(true);
+            rightFoot.transform.position = rightFootVFXSample.transform.position;
+            rightFoot.transform.eulerAngles = new Vector3(90f, transform.rotation.eulerAngles.y, 0f);
+            rightFoot.GetComponent<ParticleSystem>().Clear();
+            rightFoot.GetComponent<ParticleSystem>().Play();
+
+            poolDictionary["rightFootstep"].Enqueue(rightFoot);
         }
         else
         {
-            GameObject leftFoot = Instantiate(leftFootVFXSample, leftFootVFXSample.transform.position, transform.rotation);
-            leftFoot.transform.eulerAngles += new Vector3(90f, transform.rotation.y, 0f);
+            GameObject leftFoot = poolDictionary["leftFootstep"].Dequeue();
+
             leftFoot.SetActive(true);
+            leftFoot.transform.position = leftFootVFXSample.transform.position;
+            leftFoot.transform.eulerAngles = new Vector3(90f, transform.rotation.eulerAngles.y, 0f);
+            leftFoot.GetComponent<ParticleSystem>().Clear();
+            leftFoot.GetComponent<ParticleSystem>().Play();
+
+            poolDictionary["leftFootstep"].Enqueue(leftFoot);
         }
     }
 }

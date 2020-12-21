@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyBehavior_Instantiate : MonoBehaviour
 {
+    [Header("Object")]
+    public int poolSize;
     public GameObject enemyDrop;
-    public float timeToDrop;
-
-    private float timePassed = 0;
 
     [Header("Instance Type")]
     public bool normal = false;
@@ -16,7 +15,7 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
     [Header("Common Shoot Parameters")]
     public bool seekNearestPlayer;
     public float speed;
-    public float timeToDestroy;
+    public float timeToDeactivate;
     public bool applyGravity;
 
     [Header("Bomb Parameters")]
@@ -24,28 +23,42 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
     public float projectileLifetime;
     public float speedProjectiles;
 
-    // Update is called once per frame
-    void Update()
+    private Queue<GameObject> poolFire;
+
+    private void Start()
     {
-        timePassed += Time.deltaTime;
+        Queue<GameObject> objectPool = new Queue<GameObject>();
 
-        if(timePassed >= timeToDrop)
+        for (int i = 0; i < poolSize; i++)
         {
-            timePassed = 0f;
-            GameObject newDrop = Instantiate(enemyDrop, transform.position, Quaternion.identity);
-            newDrop.GetComponent<Rigidbody>().isKinematic = applyGravity ? false : true;
-
-            Transform direction = seekNearestPlayer ? ClosestPlayer() : transform;
-
-            if(direction != null)
-            {
-                if (normal)
-                    newDrop.GetComponent<ShootBehavior>().DefineParams(direction.position, speed, timeToDestroy);
-
-                else if (bomb)
-                    newDrop.GetComponent<BombBehavior>().DefineParams(direction.position, speed, timeToDestroy, projectileNumber, projectileLifetime, speedProjectiles);
-            }
+            GameObject obj = Instantiate(enemyDrop);
+            objectPool.Enqueue(obj);
         }
+
+        poolFire = objectPool;
+    }
+
+    public void TriggerFireInstance()
+    {
+        GameObject nextShoot = poolFire.Dequeue();
+
+        nextShoot.SetActive(true);
+        nextShoot.transform.position = transform.position;
+
+        nextShoot.GetComponent<Rigidbody>().isKinematic = applyGravity ? false : true;
+
+        Transform direction = seekNearestPlayer ? ClosestPlayer() : transform;
+
+        if (direction != null)
+        {
+            if (normal)
+                nextShoot.GetComponent<ShootBehavior>().DefineParams(direction.position, speed, timeToDeactivate);
+
+            else if (bomb)
+                nextShoot.GetComponent<BombBehavior>().DefineParams(direction.position, speed, timeToDeactivate, projectileNumber, projectileLifetime, speedProjectiles);
+        }
+
+        poolFire.Enqueue(nextShoot);
     }
 
     private Transform ClosestPlayer()
