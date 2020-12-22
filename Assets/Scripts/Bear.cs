@@ -180,6 +180,7 @@ public class Bear : MonoBehaviour
         {
             special = controls.Gameplay.Special.triggered;
         }
+
         if (special && hasSnowBall)
         {
             

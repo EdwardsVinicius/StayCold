@@ -7,13 +7,8 @@ public class meltingIce : MonoBehaviour
     public float timer = 0f;
     public float limitTimer = 5f;
 
-    public GameObject gameObject;
     public Vector3 sink;
     public RebuiltIce rebuilt;
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,6 +25,13 @@ public class meltingIce : MonoBehaviour
                 timer = 0f;
                 if(gameObject.transform.position.y <= -1)
                 {
+                    /*
+                    for(int i = 0; i < gameObject.transform.childCount; i++)
+                    {
+                        gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
+                    }
+                    */
+                    
                     gameObject.SetActive(false);
                 }
             }

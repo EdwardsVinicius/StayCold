@@ -26,10 +26,11 @@ public class ThrowableSnowBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+
         //Debug.Log("Collision entered");
         if (collider.gameObject.tag == "Ground")
         {
-            //Debug.Log("colisao");
+            Debug.Log("colisao com Ground");
             //rebuilt.rebuiltPlatform();
             Destroy(this.gameObject);
         }
@@ -39,7 +40,7 @@ public class ThrowableSnowBall : MonoBehaviour
         {
             if (rebuilt == null)
                 return;
-
+            Debug.Log("colisao com Water");
             rebuilt.rebuiltPlatform();
             Destroy(this.gameObject);
         }

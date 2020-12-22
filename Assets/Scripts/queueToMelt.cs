@@ -34,7 +34,7 @@ public class queueToMelt : MonoBehaviour
     {
         if(!haveOneMelting)
         {
-            int teste2 = UnityEngine.Random.Range(0, 6);
+            int teste2 = Random.Range(0, 6);
             teste[teste2].GetComponent<meltingIce>().sink = new Vector3 (0, -0.05f, 0);
             haveOneMelting = true;
         }
