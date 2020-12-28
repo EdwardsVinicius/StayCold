@@ -79,6 +79,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        slider = GameObject.Find("HolderPenguinHUD/Slider").GetComponent<LifeSlider>();
+
         controller = GetComponent<CharacterController>();
         anim = penguim.gameObject.GetComponent<Animator>();
 
@@ -187,7 +189,6 @@ public class Player : MonoBehaviour
 
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
@@ -195,7 +196,7 @@ public class Player : MonoBehaviour
         {
             sounds[2].Play();
             anim.SetTrigger("damage");
-            LoseHealth(attackDamage);
+            LosePlayerHealth(attackDamage);
             //slider.SetHealth(health);
             if (health <= 0)
             {
@@ -206,7 +207,7 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Water")
         {
-            LoseHealth(100);
+            LosePlayerHealth(100);
             slider.SetHealth(health);
             if (health <= 0)
             {
@@ -231,8 +232,9 @@ public class Player : MonoBehaviour
         speed *= 3;
     }
 
-    private void LoseHealth(int amount)
+    private void LosePlayerHealth(int amount)
     {
+        Debug.Log("entrou");
         health -= amount;
     }
 
@@ -270,4 +272,3 @@ public class Player : MonoBehaviour
     //        Attack();
     //    }
 }
-

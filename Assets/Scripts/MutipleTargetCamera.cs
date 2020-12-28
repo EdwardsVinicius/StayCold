@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MutipleTargetCamera : MonoBehaviour
 {
-    public List<Transform> targets;
+    
+    private List<Transform> targets;
 
     public Vector3 offset;
     public float smoothTime = .5f;
