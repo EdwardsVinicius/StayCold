@@ -228,7 +228,7 @@ public class Bear : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             sounds[1].Play();
-            LoseHealth(1);
+            LoseHealth(25);
         }
     }
     
@@ -242,6 +242,7 @@ public class Bear : MonoBehaviour
 
     private void LoseHealth(int amount)
     {
+        Debug.LogError("losthealth");
         health -= amount;
         //slider.SetHealth(health);
         if (health > 0){
