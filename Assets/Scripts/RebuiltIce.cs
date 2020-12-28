@@ -29,7 +29,7 @@ public class RebuiltIce : MonoBehaviour
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {
-            if(child.name == "Part1" || child.name == "Part2" || child.name == "Part4"
+            if (child.name == "Part1" || child.name == "Part2" || child.name == "Part4"
              || child.name == "Part5" || child.name == "Part6" || child.name == "Part7"
               || child.name == "Part8")
             {
@@ -43,14 +43,22 @@ public class RebuiltIce : MonoBehaviour
 
     void Update()
     {
+        /*
         if(goingUp)
         {
             int x = 0;
             while (goingUp == true)
             {
-                if(queueToRebuilt[x].activeInHierarchy == false)
+                if(queueToRebuilt[x].transform.GetChild(0).GetComponent<MeshRenderer>().enabled == false)
                 {
-                    queueToRebuilt[x].gameObject.SetActive(true);
+                    Debug.Log("SUBINDO " + queueToRebuilt[x]);
+
+                    for (int j = 0; j < queueToRebuilt[x].gameObject.transform.childCount; j++)
+                    {
+                        LeanTween.moveLocalY(queueToRebuilt[x].gameObject, 0f, 1f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
+                        queueToRebuilt[x].transform.GetChild(j).GetComponent<MeshRenderer>().enabled = true;
+                    }
+
                     timer += Time.deltaTime;
                     if(timer >= limitTimer){
                         goingUp = false;
@@ -75,11 +83,42 @@ public class RebuiltIce : MonoBehaviour
         //         timer = 0f;
         //     }
         // }
+        */
     }
-
+    /*
     public void rebuiltPlatform()
     {
         goingUp = true;
     }
+    */
 
+    public void rebuiltPlatform(GameObject calotas)
+    {
+        goingUp = true;
+
+        while (goingUp == true)
+        {
+            for (int i = 0; i < calotas.gameObject.transform.childCount; i++)
+            {
+                LeanTween.moveLocalY(this.gameObject, 0f, 1f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
+                calotas.gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = true;
+            }
+
+            timer += Time.deltaTime;
+
+            if (timer >= limitTimer)
+            {
+                goingUp = false;
+            }
+            else
+            {
+                calotas.gameObject.transform.position += upp;
+                if (calotas.gameObject.transform.position.y >= 0)
+                {
+                    goingUp = false;
+                }
+            }
+            
+        }
+    }
 }

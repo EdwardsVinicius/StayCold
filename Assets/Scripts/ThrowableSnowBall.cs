@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ThrowableSnowBall : MonoBehaviour
 {
@@ -28,20 +26,18 @@ public class ThrowableSnowBall : MonoBehaviour
     {
 
         //Debug.Log("Collision entered");
-        if (collider.gameObject.tag == "Ground")
+        if (collider.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("colisao com Ground");
-            //rebuilt.rebuiltPlatform();
+            Debug.Log("colisao com Ground " + collider.transform.parent.gameObject.name);
+            rebuilt.rebuiltPlatform(collider.transform.parent.gameObject);
             Destroy(this.gameObject);
         }
-
-
-        else if (collider.gameObject.tag == "Water")
+        else if (collider.gameObject.CompareTag("Water"))
         {
             if (rebuilt == null)
                 return;
             Debug.Log("colisao com Water");
-            rebuilt.rebuiltPlatform();
+            // rebuilt.rebuiltPlatform();
             Destroy(this.gameObject);
         }
 
