@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
             sounds[2].Play();
             anim.SetTrigger("damage");
             LosePlayerHealth(attackDamage);
-            //slider.SetHealth(health);
+            slider.SetHealth(health);
             if (health <= 0)
             {
                 anim.SetBool("death", true);
@@ -236,6 +236,10 @@ public class Player : MonoBehaviour
     {
         Debug.Log("entrou");
         health -= amount;
+        if (health < 0)
+        {
+            health = 0;
+        }
     }
 
     private void OnEnable()

@@ -85,6 +85,7 @@ public class Bear : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
         rebuiltIce = GameObject.Find("Calota").GetComponent<RebuiltIce>();
+        slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
 
         sounds = GetComponents<AudioSource>();
     }
@@ -244,7 +245,11 @@ public class Bear : MonoBehaviour
     {
         Debug.LogError("losthealth");
         health -= amount;
-        //slider.SetHealth(health);
+        if (health < 0)
+        {
+            health = 0;
+        }
+        slider.SetHealth(health);
         if (health > 0){
             anim.SetTrigger("bearDamage");
         }
