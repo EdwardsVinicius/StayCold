@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
             if (health <= 0)
             {
                 anim.SetBool("death", true);
+                anim.SetTrigger("deathTrigger");
                 isDead = true;
                 speed = 0;
             }
@@ -212,6 +213,7 @@ public class Player : MonoBehaviour
             if (health <= 0)
             {
                 anim.SetBool("death", true);
+                anim.SetTrigger("deathTrigger");
                 isDead = true;
                 speed = 0;
             }
