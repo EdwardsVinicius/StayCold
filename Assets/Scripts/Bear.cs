@@ -223,6 +223,7 @@ public class Bear : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Colidindo com: " + other);
         if(other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
@@ -230,6 +231,7 @@ public class Bear : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
         {
+            Debug.Log("Colidindo com calota derretida");
             StartCoroutine(DisableMeshCollider(other));
         }
         
