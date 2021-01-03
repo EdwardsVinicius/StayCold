@@ -85,6 +85,7 @@ public class Bear : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
         rebuiltIce = GameObject.Find("Calota").GetComponent<RebuiltIce>();
+        slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
 
         sounds = GetComponents<AudioSource>();
     }
@@ -227,7 +228,7 @@ public class Bear : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
-            LoseHealth(1);
+            LoseHealth(25);
         }
         else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
         {
@@ -255,8 +256,13 @@ public class Bear : MonoBehaviour
 
     private void LoseHealth(int amount)
     {
+        Debug.LogError("losthealth");
         health -= amount;
-        //slider.SetHealth(health);
+        if (health < 0)
+        {
+            health = 0;
+        }
+        slider.SetHealth(health);
         if (health > 0){
             anim.SetTrigger("bearDamage");
         }

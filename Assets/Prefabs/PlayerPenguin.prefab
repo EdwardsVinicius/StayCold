@@ -109,7 +109,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885847060999051797}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -220,8 +220,8 @@ MonoBehaviour:
   hitbox: {fileID: 1885847062630584576}
   dashHitbox: {fileID: 1885847060999051797}
   attackDuration: 0.2
-  attackDamage: 2
-  health: 10
+  attackDamage: 25
+  health: 100
   penguim: {fileID: 1651332567795069995}
   isDead: 0
   slider: {fileID: 0}
