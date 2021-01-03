@@ -150,8 +150,6 @@ public class Bear : MonoBehaviour
         if (special && !hasSnowBall)
         {
             sounds[0].Play();
-
-            StartCoroutine(SnowBallCoolDown(snowBallCoolDownDuration));
             //anim.SetBool("bearHasSnowBall", true);
             //Debug.Log("snow ball " + hasSnowBall.ToString());
             hasSnowBall = true;
@@ -162,11 +160,11 @@ public class Bear : MonoBehaviour
         }
     }
 
-    IEnumerator SnowBallCoolDown(float time)
+    public IEnumerator SnowBallCoolDown(float time)
     {
         canPickUpSnowBall = false;
         yield return new WaitForSeconds(time);
-        rebuiltIce.rebuiltPlatform();
+        //rebuiltIce.rebuiltPlatform();
         canPickUpSnowBall = true;
     }
 
@@ -181,6 +179,7 @@ public class Bear : MonoBehaviour
         {
             special = controls.Gameplay.Special.triggered;
         }
+
         if (special && hasSnowBall)
         {
             
@@ -213,24 +212,38 @@ public class Bear : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             LoseHealth(25);
         }
-        else if (collision.gameObject.tag == "Water")
+        else if (collision.gameObject.CompareTag("Water"))
         {
             LoseHealth(100);
         }
-        
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        Debug.Log("Colidindo com: " + other);
+        if(other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
             LoseHealth(25);
         }
+        else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
+        {
+            Debug.Log("Colidindo com calota derretida");
+            StartCoroutine(DisableMeshCollider(other));
+        }
+        
+    }
+
+    // Desabilita o Mesh Collider da calota por 2 segundos
+    IEnumerator DisableMeshCollider(Collider calota)
+    {
+        calota.gameObject.GetComponent<MeshCollider>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        calota.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
     
 
