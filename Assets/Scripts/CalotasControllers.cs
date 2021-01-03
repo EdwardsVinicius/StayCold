@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CalotasControllers : MonoBehaviour
@@ -8,24 +7,18 @@ public class CalotasControllers : MonoBehaviour
 
     public float timerMelt = 0f;
     public float limitTimerMelt = 20f;
-    public static bool haveOneMelting;
-    // public Vector3 sink;
+    public bool haveOneMelting;
     [SerializeField]
     private List<GameObject> queueToMelt;
 
     [Header("REBUILT VARIABLES")]
 
-    public float timerRebuilt = 0f;
-    public float limitTimerRebuilt = 5f;
-    public Vector3 upp;
-    // public static bool goingUp;
     [SerializeField]
     private List<GameObject> queueToRebuilt;
 
     private void Awake()
     {
         haveOneMelting = false;
-        // goingUp = false;
     }
 
     void Start()
@@ -41,76 +34,59 @@ public class CalotasControllers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MeltingRandomCalota();
+        RandomMeltTime();
+    }
+
+    void RandomMeltTime()
+    {
+        timerMelt += Time.deltaTime;
+
+        if (timerMelt >= limitTimerMelt)
+        {
+            timerMelt = 0f;
+
+            // Se uma calota estiver derretendo, então não haverá outro derretimento aleatório
+            if (!haveOneMelting) MeltingRandomCalota();
+        }
     }
 
     void MeltingRandomCalota()
     {
         if (queueToMelt.Count != 0)
         {
-            // Debug.Log(haveOneMelting);
-            if (!haveOneMelting) // sE NÃO TIVER NENHUM DERRETENDO, SORTEIA UM PRA DERRETER
-            {
-                //Debug.Log(haveOneMelting);
-                int sortCalota = Random.Range(0, queueToMelt.Count - 1);
-                
-                //sink = new Vector3(0, -0.2f, 0);
+            int sortedCalota = Random.Range(0, queueToMelt.Count - 1);
 
-                MeltingCalota(queueToMelt[sortCalota]);
-
-                if (queueToRebuilt.Contains(queueToMelt[sortCalota]) == false) queueToRebuilt.Add(queueToMelt[sortCalota]);
-                
-                if (queueToRebuilt.Contains(queueToMelt[sortCalota]) == true) queueToMelt.RemoveAt(sortCalota);
-
-                // Debug.Log(queueToMelt.Count - 1);
-                haveOneMelting = true;
-            }
-            else
-            {
-                timerMelt += Time.deltaTime;
-
-                if (timerMelt >= limitTimerMelt)
-                {
-                    haveOneMelting = false;
-                    timerMelt = 0f;
-                }
-            }
+            MeltingCalota(queueToMelt[sortedCalota]);  
         }
-        else
-        {
+        else // Game Over
+        { 
             Debug.Log("Sem calotas para derreter");
         }
     }
 
     void MeltingCalota(GameObject calota)
     {
-        /*
-        for (int i = 0; i < calota.gameObject.transform.childCount; i++)
-        {
-            calota.gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
-        }
-        */
-
-
         if (calota.GetComponent<Calota>().beingBuilt == false)
         {
-            LeanTween.moveLocalY(calota.gameObject, -1f, 10f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
+            haveOneMelting = true;
+            calota.transform.GetComponent<Calota>().beingMelted = true;
 
-            for (int i = 0; i < calota.gameObject.transform.childCount; i++)
+            if (calota.GetComponent<Calota>().beingMelted == true)
             {
-                calota.gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
-                // ativa o trigger para q o urso possa detectar colisao com a calota derretida
-                calota.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().isTrigger = true;
-            }
-            /*
-            if (calota.gameObject.transform.position.y <= -1)
-            {
+                LeanTween.moveLocalY(calota.gameObject, -0.02f, 1f);
+                LeanTween.moveLocalY(calota.gameObject, -1f, 5f).setDelay(10f);
+                
                 for (int i = 0; i < calota.gameObject.transform.childCount; i++)
                 {
                     calota.gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
+                    // ativa o trigger para q o urso possa detectar colisao com a calota derretida
+                    calota.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().isTrigger = true;
                 }
+
+                if (queueToRebuilt.Contains(calota) == false) queueToRebuilt.Add(calota);
+
+                if (queueToRebuilt.Contains(calota) == true) queueToMelt.Remove(calota);
             }
-            */
         }
     }
     
@@ -118,11 +94,20 @@ public class CalotasControllers : MonoBehaviour
     {
         if (calota.transform.GetChild(0).GetComponent<MeshRenderer>().enabled == false)
         {
+            // se a calota estiver derretendo, o urso ainda pode reconstrui-la antes q o derretimento seja completo
+            if(calota.transform.GetComponent<Calota>().beingMelted == true)
+            {
+                LeanTween.cancel(calota);
+                calota.transform.GetComponent<Calota>().beingMelted = false;
+                haveOneMelting = false;
+                timerMelt = 0;
+                // calota.transform.GetComponent<Calota>().beingBuilt = true;
+            }
+
             calota.transform.GetComponent<Calota>().beingBuilt = true;
-            // goingUp = true;
 
             Debug.Log("SUBINDO " + calota);
-            LeanTween.moveLocalY(calota.gameObject, 0f, 2f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
+            LeanTween.moveLocalY(calota.gameObject, 0f, 3f);
 
             for (int j = 0; j < calota.gameObject.transform.childCount; j++)
             {
@@ -131,46 +116,9 @@ public class CalotasControllers : MonoBehaviour
                 calota.gameObject.transform.GetChild(j).GetComponent<MeshCollider>().isTrigger = false;
             }
 
-            // goingUp = false;
-
             if (queueToMelt.Contains(calota) == false) queueToMelt.Add(calota);
 
             if (queueToRebuilt.Contains(calota) == true) queueToRebuilt.Remove(calota);
-
-            // calota.GetComponent<MeltingIce>().sink = new Vector3(0, Time.deltaTime, 0);
-            // calota.GetComponent<MeltingIce>().stillGoing = true;
-            
-
-
-            timerRebuilt += Time.deltaTime;
-    
-            if (timerRebuilt >= limitTimerRebuilt)
-            {
-                // goingUp = false;
-                calota.transform.GetComponent<Calota>().beingBuilt = false;
-            }
-            else
-            {
-                calota.gameObject.transform.position += upp;
-
-                if (calota.transform.position.y >= 0f)
-                {
-                    // goingUp = false;
-                    calota.transform.GetComponent<Calota>().beingBuilt = false;
-                }
-            }
-            
-        }
-        else
-        {
-            calota.transform.GetComponent<Calota>().beingBuilt = false;
-
-            timerRebuilt += Time.deltaTime;
-
-            if (timerRebuilt >= limitTimerRebuilt)
-            {
-                timerRebuilt = 0f;
-            }
-        }
+        }       
     }
 }

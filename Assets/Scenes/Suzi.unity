@@ -238,11 +238,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMelt: 0
-  limitTimerMelt: 20
+  limitTimerMelt: 5
+  haveOneMelting: 0
   queueToMelt: []
   timerRebuilt: 0
   limitTimerRebuilt: 5
-  upp: {x: 0, y: 0, z: 0}
   queueToRebuilt: []
 --- !u!1 &328556836 stripped
 GameObject:
