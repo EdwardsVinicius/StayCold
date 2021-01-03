@@ -8,6 +8,7 @@ public class CalotasControllers : MonoBehaviour
     public float timerMelt = 0f;
     public float limitTimerMelt = 20f;
     public bool haveOneMelting;
+    int sortedCalota;
     [SerializeField]
     private List<GameObject> queueToMelt;
 
@@ -35,6 +36,21 @@ public class CalotasControllers : MonoBehaviour
     void Update()
     {
         RandomMeltTime();
+
+        //
+        if(queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
+        {
+            if (queueToMelt[sortedCalota].transform.position.y == -10f)
+            {
+                OnOffCalota(queueToMelt[sortedCalota], false, true);
+                queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted = false;
+
+                if (queueToRebuilt.Contains(queueToMelt[sortedCalota]) == false) queueToRebuilt.Add(queueToMelt[sortedCalota]);
+
+                if (queueToRebuilt.Contains(queueToMelt[sortedCalota]) == true) queueToMelt.Remove(queueToMelt[sortedCalota]);
+                haveOneMelting = false;
+            }
+        }
     }
 
     void RandomMeltTime()
@@ -54,13 +70,25 @@ public class CalotasControllers : MonoBehaviour
     {
         if (queueToMelt.Count != 0)
         {
-            int sortedCalota = Random.Range(0, queueToMelt.Count - 1);
+            sortedCalota = Random.Range(0, queueToMelt.Count - 1);
+            Debug.Log("sortedCalota: " + sortedCalota);
+            Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
 
             MeltingCalota(queueToMelt[sortedCalota]);  
         }
         else // Game Over
         { 
             Debug.Log("Sem calotas para derreter");
+        }
+    }
+
+    public void OnOffCalota(GameObject calota, bool enabled, bool isTrigged)
+    {
+        for (int i = 0; i < calota.gameObject.transform.childCount; i++)
+        {
+            calota.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = enabled;
+            // desativa o trigger para q o urso não possa mais detectar colisao com a calota agora reconstruida
+            calota.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().isTrigger = isTrigged;
         }
     }
 
@@ -74,47 +102,37 @@ public class CalotasControllers : MonoBehaviour
             if (calota.GetComponent<Calota>().beingMelted == true)
             {
                 LeanTween.moveLocalY(calota.gameObject, -0.02f, 1f);
+
+                // OnOffCalota(calota, false, true);
+
                 LeanTween.moveLocalY(calota.gameObject, -1f, 5f).setDelay(10f);
-                
-                for (int i = 0; i < calota.gameObject.transform.childCount; i++)
-                {
-                    calota.gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
-                    // ativa o trigger para q o urso possa detectar colisao com a calota derretida
-                    calota.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().isTrigger = true;
-                }
-
-                if (queueToRebuilt.Contains(calota) == false) queueToRebuilt.Add(calota);
-
-                if (queueToRebuilt.Contains(calota) == true) queueToMelt.Remove(calota);
             }
         }
     }
     
     public void RebuildingCalota(GameObject calota)
     {
+        // se a calota estiver derretendo, o urso ainda pode reconstrui-la antes q o derretimento seja completo
+        if (calota.transform.GetComponent<Calota>().beingMelted == true)
+        {
+            LeanTween.cancel(calota);
+            calota.transform.GetComponent<Calota>().beingMelted = false;
+            haveOneMelting = false;
+            timerMelt = 0;
+            calota.transform.GetComponent<Calota>().beingBuilt = true;
+
+            Debug.Log("SUBINDO " + calota);
+            LeanTween.moveLocalY(calota.gameObject, 0f, 3f);
+        }
+
         if (calota.transform.GetChild(0).GetComponent<MeshRenderer>().enabled == false)
         {
-            // se a calota estiver derretendo, o urso ainda pode reconstrui-la antes q o derretimento seja completo
-            if(calota.transform.GetComponent<Calota>().beingMelted == true)
-            {
-                LeanTween.cancel(calota);
-                calota.transform.GetComponent<Calota>().beingMelted = false;
-                haveOneMelting = false;
-                timerMelt = 0;
-                // calota.transform.GetComponent<Calota>().beingBuilt = true;
-            }
-
             calota.transform.GetComponent<Calota>().beingBuilt = true;
 
             Debug.Log("SUBINDO " + calota);
             LeanTween.moveLocalY(calota.gameObject, 0f, 3f);
 
-            for (int j = 0; j < calota.gameObject.transform.childCount; j++)
-            {
-                calota.transform.GetChild(j).GetComponent<MeshRenderer>().enabled = true;
-                // desativa o trigger para q o urso não possa mais detectar colisao com a calota agora reconstruida
-                calota.gameObject.transform.GetChild(j).GetComponent<MeshCollider>().isTrigger = false;
-            }
+            OnOffCalota(calota, true, false);
 
             if (queueToMelt.Contains(calota) == false) queueToMelt.Add(calota);
 

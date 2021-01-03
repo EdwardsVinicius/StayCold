@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RebuiltIce : MonoBehaviour
 {
-
-    //public GameObject gameObject;
-    //public Button rebuiltBtn;
-
     public float timer = 0f;
     public float limitTimer = 5f;
     public Vector3 upp;
     public bool goingUp;
-
-    public Button rebuiltBtn;
 
     [SerializeField]
     private List<GameObject> queueToRebuilt;
@@ -23,27 +15,20 @@ public class RebuiltIce : MonoBehaviour
     {
         goingUp = false;
     }
+
     void Start()
     {
-        //rebuiltBtn.onClick.AddListener(rebuiltPlatform);
-        Transform[] allChildren = GetComponentsInChildren<Transform>();
-        foreach (Transform child in allChildren)
+        // i começa com 1 só para não adicionar a calota Limite Fim
+        for (int i = 1; i < this.GetComponentInChildren<Transform>().childCount; i++)
         {
-            if (child.name == "Part1" || child.name == "Part2" || child.name == "Part4"
-             || child.name == "Part5" || child.name == "Part6" || child.name == "Part7"
-              || child.name == "Part8")
-            {
-                queueToRebuilt.Add(child.gameObject);
-            }
+            //Debug.Log(this.GetComponentInChildren<Transform>().GetChild(i).name);
+            queueToRebuilt.Add(this.GetComponentInChildren<Transform>().GetChild(i).gameObject);
         }
-        goingUp = false;
-
-        print(queueToRebuilt.Count);
     }
 
     void Update()
     {
-        /*
+        
         if(goingUp)
         {
             int x = 0;
@@ -83,16 +68,19 @@ public class RebuiltIce : MonoBehaviour
         //         timer = 0f;
         //     }
         // }
-        */
+        
     }
+    
     /*
-    public void rebuiltPlatform()
+    public void RebuiltPlatform()
     {
         goingUp = true;
     }
     */
+    
 
-    public void rebuiltPlatform(GameObject calotas)
+    
+    public void RebuiltPlatform(GameObject calotas)
     {
         goingUp = true;
 
@@ -121,4 +109,5 @@ public class RebuiltIce : MonoBehaviour
             
         }
     }
+    
 }

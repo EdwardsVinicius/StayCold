@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class queueToMelt : MonoBehaviour
+public class QueueToMelt : MonoBehaviour
 {
     public float timer = 0f;
     public float limitTimer = 20f;
     public bool haveOneMelting;
     [SerializeField]
-    private List<GameObject> teste;
-    //public Component teste2;
-    // Start is called before the first frame update
+    private List<GameObject> toMelt;
+
     void Start()
     {
-        Transform[] allChildren = GetComponentsInChildren<Transform>();
-        foreach (Transform child in allChildren)
+        // i começa com 1 só para não adicionar a calota Limite Fim
+        for(int i = 1; i < this.GetComponentInChildren<Transform>().childCount; i++)
         {
-            if(child.name == "Part1" || child.name == "Part2" || child.name == "Part4"
-             || child.name == "Part5" || child.name == "Part6" || child.name == "Part7"
-              || child.name == "Part8")
-            {
-                //print(child.name);
-                teste.Add(child.gameObject);
-            }
-            //child.gameObject.SetActive(false);
+            //Debug.Log(this.GetComponentInChildren<Transform>().GetChild(i).name);
+            toMelt.Add(this.GetComponentInChildren<Transform>().GetChild(i).gameObject);
         }
-        haveOneMelting = false;
-        //gameObjects.Add()
+
+        haveOneMelting = false;        
     }
 
     // Update is called once per frame
@@ -35,7 +28,7 @@ public class queueToMelt : MonoBehaviour
         if(!haveOneMelting)
         {
             int teste2 = Random.Range(0, 6);
-            teste[teste2].GetComponent<meltingIce>().sink = new Vector3 (0, -0.2f, 0);
+            toMelt[teste2].GetComponent<MeltingIce>().sink = new Vector3 (0, -0.2f, 0);
             haveOneMelting = true;
         }
         else{

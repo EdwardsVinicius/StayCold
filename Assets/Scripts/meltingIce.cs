@@ -1,39 +1,56 @@
 ﻿using UnityEngine;
 
-public class meltingIce : MonoBehaviour
+public class MeltingIce : MonoBehaviour
 {
     public float timer = 0f;
     public float limitTimer = 5f;
 
     public Vector3 sink;
-    public RebuiltIce rebuilt;
+    // public bool stillGoing;
 
-    // Update is called once per frame
+    public static bool beingBuilt, beingMelted;
+
     void Update()
     {
-        // Debug.Log(rebuilt.goingUp);
-        if(!rebuilt.goingUp) //if true
+        /*
+        Debug.Log(CalotasControllers.goingUp);
+        if (CalotasControllers.goingUp == false)
         {
             timer += Time.deltaTime;
 
-            if(timer >= limitTimer)
+            if (timer >= limitTimer)
             {
                 gameObject.transform.position += sink;
                 //box2d.size += boxIncrease;
                 timer = 0f;
-                if(gameObject.transform.position.y <= -1)
+
+                if (gameObject.transform.position.y <= -1)
                 {
-                    
-                    for(int i = 0; i < gameObject.transform.childCount; i++)
+                    for (int i = 0; i < gameObject.transform.childCount; i++)
                     {
-                        LeanTween.moveLocalY(this.gameObject, 0f, 1f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
+                        LeanTween.moveLocalY(this.gameObject, -1f, 1f).setEase(LeanTweenType.easeInQuad).setDelay(1f);
                         gameObject.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
                     }
-                    
-                    
-                    // gameObject.SetActive(false);
                 }
             }
         }
+        */
+        
+        /*
+        if (stillGoing)
+        {
+            if (gameObject.transform.position.y >= 0)
+            {
+                //print("PARA TUDO PARA TUDO");
+                gameObject.transform.position = new Vector3(0, 0, 0);
+                sink = new Vector3(0, 0, 0);
+                stillGoing = false;
+            }
+            else
+            {
+                gameObject.transform.position += sink;
+            }
+        }
+        */
     }
 }
