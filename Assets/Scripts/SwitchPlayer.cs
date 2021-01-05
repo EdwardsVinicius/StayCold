@@ -35,9 +35,9 @@ public class SwitchPlayer : MonoBehaviour
 
     void Start()
     {
-        player1.gameObject.SetActive(true);
-        player2.gameObject.SetActive(false);
-        animator = GameObject.Find("PlayerPenguin").GetComponentInChildren<Animator>();
+        player1.gameObject.SetActive(false);
+        player2.gameObject.SetActive(true);
+        //animator = GameObject.Find("PlayerPenguin").GetComponentInChildren<Animator>();
     }
 
     private void Update()
