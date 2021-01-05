@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     public GameObject dashHitbox;
     private bool slideEnabled = true;
     public float attackDuration = 0.3f;
-    public float vfxHitTimer = 0.15f;
     private float attackLag = 0f;
 
     [SerializeField]
@@ -160,7 +159,10 @@ public class Player : MonoBehaviour
 
         //}
         sounds[0].Play();
-        ActivateHitbox();
+
+        anim.SetTrigger("attack");
+        speed /= 3;
+        //ActivateHitbox();
     }
 
     public void ActivateHitbox()
@@ -262,24 +264,7 @@ public class Player : MonoBehaviour
     
     IEnumerator ShowHitboxForSeconds()
     {
-        //yield return new WaitForSeconds(attackLag);
-        //isMovable = false;
-
-        anim.SetTrigger("attack");
-        speed /= 3;
-
-        StartCoroutine(ActivateHitVFX());
-
-        yield return new WaitForSeconds(attackDuration + vfxHitTimer);
-        hitbox.SetActive(false);
-        //isMovable = true;
-        isAttacking = false;
-        speed *= 3;
-    }
-
-    IEnumerator ActivateHitVFX()
-    {
-        yield return new WaitForSeconds(vfxHitTimer);
+        hitbox.SetActive(true);
 
         GameObject attackHitVFX = poolDictionary["attackHitVFX"].Dequeue();
 
@@ -291,7 +276,11 @@ public class Player : MonoBehaviour
 
         poolDictionary["attackHitVFX"].Enqueue(attackHitVFX);
 
-        hitbox.SetActive(true);
+        yield return new WaitForSeconds(attackDuration);
+        hitbox.SetActive(false);
+        //isMovable = true;
+        isAttacking = false;
+        speed *= 3;
     }
 
     private void LosePlayerHealth(int amount)

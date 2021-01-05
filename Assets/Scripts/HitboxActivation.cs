@@ -6,7 +6,7 @@ public class HitboxActivation : MonoBehaviour
 {
     public void ActivatePlayerHitbox()
     {
-        Debug.Log("ActivatePlayerHitbox");
-        //transform.parent.gameObject.GetComponent<Player>().ActivateHitbox();
+        //Debug.Log("ActivatePlayerHitbox");
+        transform.parent.gameObject.GetComponent<Player>().ActivateHitbox();
     }
 }

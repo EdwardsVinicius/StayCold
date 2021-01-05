@@ -35649,18 +35649,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1227344437}
     m_Modifications:
-    - target: {fileID: 5880492880161688731, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5880492880931671008, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6663132365877052338, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       propertyPath: m_Name
       value: Magma_Creep
@@ -35712,10 +35700,6 @@ PrefabInstance:
     - target: {fileID: 7768122591846305301, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731988978797940948, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
-      propertyPath: timeToStartSeekExplosion
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
@@ -50176,6 +50160,10 @@ PrefabInstance:
     - target: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
       propertyPath: m_Name
       value: FireFly_Creep
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4166462945916727588, guid: 156a6ec176379924bb354165d878175a, type: 3}
       propertyPath: m_LocalPosition.x
