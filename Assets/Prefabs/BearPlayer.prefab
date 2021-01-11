@@ -210,13 +210,12 @@ MonoBehaviour:
   throwableSnowBall: {fileID: 3868369210658801457, guid: eac7c571822fbec438809dc19aa031b8, type: 3}
   snowBallSpawn: {fileID: 202783816600427081}
   hitbox: {fileID: 202783817247802875}
-  health: 6
+  health: 100
   dead: 0
   bear: {fileID: 1013599222894968743}
   slider: {fileID: 0}
   rebuiltIce: {fileID: 0}
   playerIndex: 1
-  special: 0
 --- !u!136 &202783817996134474
 CapsuleCollider:
   m_ObjectHideFlags: 0

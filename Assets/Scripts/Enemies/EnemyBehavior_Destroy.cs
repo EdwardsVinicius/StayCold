@@ -134,7 +134,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
     private void ChooseIce()
     {
-        GameObject calota = GameObject.Find("Calota");
+        GameObject calota = GameObject.Find("CalotaHexagonal");
         iceChoosed = calota.transform.GetChild(Random.Range(1, calota.transform.childCount - 1)).gameObject;
         nextPos = new Vector3(iceChoosed.transform.position.x, transform.position.y, iceChoosed.transform.position.z);
         LookDirection(nextPos);

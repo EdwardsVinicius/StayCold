@@ -96,7 +96,7 @@ public class Bear : MonoBehaviour
         hasSnowBall = false;
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
-        rebuiltIce = GameObject.Find("Calota").GetComponent<RebuiltIce>();
+        rebuiltIce = GameObject.Find("CalotaHexagonal").GetComponent<RebuiltIce>();
         slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
 
         sounds = GetComponents<AudioSource>();
@@ -253,7 +253,7 @@ public class Bear : MonoBehaviour
 
     private void LoseHealth(int amount)
     {
-        Debug.LogError("losthealth");
+        Debug.Log("losthealth");
         health -= amount;
         if (health < 0)
         {

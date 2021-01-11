@@ -49,11 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 95008497}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &96556241
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 96556241}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &330120098
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,11 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 330120098}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &422611388
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,11 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 422611388}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &1496471564
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,11 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 1496471564}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &1498842063
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,11 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 1498842063}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!1 &1775778979
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,11 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089dc62fee628e2448597b7063261a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 0.5
-  gameObject: {fileID: 1779770004}
-  sink: {x: 0, y: 0, z: 0}
-  rebuilt: {fileID: 1193619935}
+  beingBuilt: 0
+  beingMelted: 0
 --- !u!64 &1401027222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1535,8 +1514,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8458200437018254347}
-  - component: {fileID: 1193619936}
   - component: {fileID: 1193619935}
+  - component: {fileID: 6667754333380396364}
   m_Layer: 10
   m_Name: CalotaHexagonal
   m_TagString: Ground
@@ -1566,23 +1545,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1193619936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8035116286452494721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec3f55dd08b671a43891e2e0850a49ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  limitTimer: 20
-  haveOneMelting: 0
-  teste: []
-  rebuilt: {fileID: 0}
 --- !u!114 &1193619935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,9 +1561,24 @@ MonoBehaviour:
   limitTimer: 5
   upp: {x: 0, y: 0, z: 0}
   goingUp: 0
-  rebuiltBtn: {fileID: 0}
   queueToRebuilt: []
-  activesInScene: 
+--- !u!114 &6667754333380396364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035116286452494721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73358fea6f38d3c41add140ac753a33d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerMelt: 0
+  limitTimerMelt: 20
+  haveOneMelting: 0
+  queueToMelt: []
+  queueToRebuilt: []
 --- !u!1001 &978198513434190439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1660,6 +1637,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1741,6 +1722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1820,6 +1805,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1901,6 +1890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1980,6 +1973,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2061,6 +2058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2140,6 +2141,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2221,6 +2226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2300,6 +2309,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2381,6 +2394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2460,6 +2477,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2541,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2620,6 +2645,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2701,6 +2730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2780,6 +2813,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2861,6 +2898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2940,6 +2981,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3021,6 +3066,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3100,6 +3149,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3181,6 +3234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3260,6 +3317,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3341,6 +3402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3420,6 +3485,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3501,6 +3570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3580,6 +3653,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3661,6 +3738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3740,6 +3821,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3821,6 +3906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3900,6 +3989,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3981,6 +4074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4060,6 +4157,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4141,6 +4242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4220,6 +4325,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4301,6 +4410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4380,6 +4493,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4461,6 +4578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4540,6 +4661,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4621,6 +4746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4701,6 +4830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice Tile_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4780,6 +4913,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Name
       value: Ice Tile_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d95957706125ace42b5e02eb915708ea, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4653277074255243945, guid: d95957706125ace42b5e02eb915708ea, type: 3}
       propertyPath: m_Materials.Array.data[0]

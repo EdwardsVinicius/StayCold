@@ -19,18 +19,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8982766901420093647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651332567795069995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbe9bcc6240b3249ae46a2e67e60324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5121813301336896654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +254,7 @@ MonoBehaviour:
   penguim: {fileID: 1651332567795069995}
   isDead: 0
   slider: {fileID: 0}
+  playerIndex: 0
   pools:
   - tag: attackHitVFX
     VFXPrefab: {fileID: 2333421048120964591}
