@@ -46,6 +46,7 @@ MonoBehaviour:
   startPoint: {fileID: 7122738998404707070}
   multiplayer:
   - {fileID: 1885847061373348384, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
-  - {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
+  - {fileID: 202783817996134518, guid: f9410979bb25a5046bbd2c509b2a2fe2, type: 3}
   singleplayer: {fileID: 631200345242464583, guid: bd8d6ec5f34dfad498202cdc43d9250f, type: 3}
-  isMultiplayer: 0
+  gambiarraBox: {fileID: 6627816537623319464, guid: dccada80e427d1b4e89293ed82a80811, type: 3}
+  isMultiplayer: 1

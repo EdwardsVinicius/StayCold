@@ -45,7 +45,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -56,7 +56,7 @@
                     "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -78,7 +78,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -89,7 +89,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -100,7 +100,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -111,7 +111,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -133,7 +133,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -144,7 +144,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -155,7 +155,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -166,7 +166,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard;Keyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -177,7 +177,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;LeftKeyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -188,7 +188,7 @@
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;RightKeyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -199,7 +199,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -210,7 +210,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -221,7 +221,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -232,7 +232,7 @@
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;LeftKeyboard",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -243,7 +243,7 @@
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;RightKeyboard",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -254,7 +254,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -265,7 +265,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;RightKeyboard",
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -276,7 +276,7 @@
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard;LeftKeyboard",
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -287,7 +287,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -298,7 +298,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -352,7 +352,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -363,7 +363,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -374,7 +374,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -385,7 +385,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -396,7 +396,7 @@
                     "path": "<Keyboard>/m",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -407,7 +407,73 @@
                     "path": "<Keyboard>/n",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "RightKeyboard",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a8adb45-6ca2-4b16-8dee-6844f6d236a7",
+                    "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8eba247-10c3-4e60-ba8e-4c19f1d8f4d2",
+                    "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af1e8672-55ac-4c55-8997-6f29fd5a7180",
+                    "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21e39515-81f8-4101-8a49-1114ec787d06",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02b98033-918d-4b61-98c0-27c13e15af62",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ded6998-ae7c-46a7-99f3-d48701ede953",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -461,7 +527,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -472,7 +538,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -483,7 +549,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -494,7 +560,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -505,7 +571,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -516,7 +582,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/stick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -524,10 +590,10 @@
                 {
                     "name": "",
                     "id": "b43a2884-a8e4-4a7e-bd79-5be70aa15a18",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -538,7 +604,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -549,7 +615,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -557,10 +623,10 @@
                 {
                     "name": "",
                     "id": "4562c170-5347-463c-afaf-a15559cd2d83",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "LeftKeyboard",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -571,7 +637,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -582,7 +648,7 @@
                     "path": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -592,8 +658,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "WASD Keyboard",
-            "bindingGroup": "WASD Keyboard",
+            "name": "LeftKeyboard",
+            "bindingGroup": "LeftKeyboard",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
@@ -603,8 +669,8 @@
             ]
         },
         {
-            "name": "Arrow Keyboard",
-            "bindingGroup": "Arrow Keyboard",
+            "name": "RightKeyboard",
+            "bindingGroup": "RightKeyboard",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
@@ -614,11 +680,32 @@
             ]
         },
         {
-            "name": "Generic Joystick",
-            "bindingGroup": "Generic Joystick",
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
             "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                },
                 {
                     "devicePath": "<HID::MY-POWER CO.,LTD. 2In1 USB Joystick>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }

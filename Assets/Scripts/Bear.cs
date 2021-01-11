@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Bear : MonoBehaviour
 {
@@ -41,34 +42,43 @@ public class Bear : MonoBehaviour
     Vector2 move;
     StartPoint script;
 
+    [SerializeField]
+    private int playerIndex = 1;
+
+    private bool special;
+
     private void Awake()
     {
         controls = new InputManager();
 
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
 
-        GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        script = startPoint.GetComponent<StartPoint>();
+        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        //script = startPoint.GetComponent<StartPoint>();
 
-        if (script.isMultiplayer)
-        {
+        //if (script.isMultiplayer)
+        //{
 
-            playerInput.SwitchCurrentActionMap("Player_2");
+        //    playerInput.SwitchCurrentActionMap("Player_2");
 
-            controls.Player_2.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Player_2.Move.canceled += ctx => move = Vector2.zero;
+        //    //controls.Player_2.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[1]);
 
-            controls.Player_2.Attack.performed += ctx => Attack();
+        //    controls.Player_2.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Player_2.Move.canceled += ctx => move = Vector2.zero;
 
-        }
-        else
-        {
-            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+        //    controls.Player_2.Attack.performed += ctx => Attack();
 
-            controls.Gameplay.Attack.performed += ctx => Attack();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
 
-        }
+        //    controls.Gameplay.Attack.performed += ctx => Attack();
+
+        //}
+
+        //controls.Gameplay.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[1]);
 
         //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
@@ -139,15 +149,6 @@ public class Bear : MonoBehaviour
     }
     private void PickUpSnow()
     {
-        bool special;
-        if (script.isMultiplayer)
-        {
-            special = controls.Player_2.Special.triggered;
-        }
-        else
-        {
-            special = controls.Gameplay.Special.triggered;
-        }
         //inserir bottão de ataque
         if (special && !hasSnowBall)
         {
@@ -160,6 +161,8 @@ public class Bear : MonoBehaviour
 
             //StartCoroutine(ShowHitboxForSeconds(attackDuration));            
         }
+
+        special = false;
     }
 
     public IEnumerator SnowBallCoolDown(float time)
@@ -172,16 +175,6 @@ public class Bear : MonoBehaviour
 
     private void PlaceSnow()
     {
-        bool special;
-        if (script.isMultiplayer)
-        {
-            special = controls.Player_2.Special.triggered;
-        }
-        else
-        {
-            special = controls.Gameplay.Special.triggered;
-        }
-
         if (special && hasSnowBall)
         {
             
@@ -197,6 +190,8 @@ public class Bear : MonoBehaviour
             anim.SetTrigger("bearThrow");
             //StartCoroutine(ShowHitboxForSeconds(attackDuration));            
         }
+
+        special = false;
     }
 
     private void Attack()
@@ -266,6 +261,7 @@ public class Bear : MonoBehaviour
         }
         slider.SetHealth(health);
         if (health > 0){
+            sounds[2].Play();
             anim.SetTrigger("bearDamage");
         }
         if (health <= 0 && !dead)
@@ -283,27 +279,55 @@ public class Bear : MonoBehaviour
         anim.SetTrigger("bearDeath");
     }
 
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
+
     private void OnEnable()
     {
-        if (script.isMultiplayer)
-        {
-            controls.Player_2.Enable();
-        }
-        else
-        {
-            controls.Gameplay.Enable();
-        }
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_2.Enable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Enable();
+        //}
+        controls.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        if (script.isMultiplayer)
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_2.Disable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Disable();
+        //}
+        controls.Gameplay.Disable();
+    }
+
+    public void OnMove(CallbackContext context)
+    {
+        move = context.ReadValue<Vector2>();
+    }
+
+    public void OnAttack(CallbackContext context)
+    {
+        if (context.performed)
         {
-            controls.Player_2.Disable();
+            Attack();
         }
-        else
+    }
+
+    public void OnSpecial(CallbackContext context)
+    {
+        if (context.performed)
         {
-            controls.Gameplay.Disable();
+            special = true;
         }
     }
 

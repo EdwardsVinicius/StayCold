@@ -49,6 +49,10 @@ public class Player : MonoBehaviour
     Vector2 move;
     StartPoint script;
 
+    [SerializeField]
+    private int playerIndex = 0;
+
+    private bool special;
     [System.Serializable]
     public class VFXPool
     {
@@ -65,26 +69,30 @@ public class Player : MonoBehaviour
     {
         controls = new InputManager();
 
-        GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        script = startPoint.GetComponent<StartPoint>();
-        playerInput = GetComponent<PlayerInput>();
+        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        //script = startPoint.GetComponent<StartPoint>();
+        //playerInput = GetComponent<PlayerInput>();
 
-        if (script.isMultiplayer)
-        {
-            playerInput.SwitchCurrentActionMap("Player_1");
+        //if (script.isMultiplayer)
+        //{
 
-            controls.Player_1.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Player_1.Move.canceled += ctx => move = Vector2.zero;
+        //    playerInput.SwitchCurrentActionMap("Player_1");
+        //    //controls.Player_1.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[0]);
 
-            controls.Player_1.Attack.performed += ctx => Attack();
-        }
-        else
-        {
-            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+        //    controls.Player_1.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Player_1.Move.canceled += ctx => move = Vector2.zero;
 
-            controls.Gameplay.Attack.performed += ctx => Attack();
-        }
+        //    controls.Player_1.Attack.performed += ctx => Attack();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+        //    controls.Gameplay.Attack.performed += ctx => Attack();
+        //}
+
+        //controls.Gameplay.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[0]);
 
         //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
@@ -182,15 +190,14 @@ public class Player : MonoBehaviour
         }
         else
         {
-            bool special;
-            if (script.isMultiplayer)
-            {
-                special = controls.Player_1.Special.triggered;
-            }
-            else
-            {
-                special = controls.Gameplay.Special.triggered;
-            }
+            //if (script.isMultiplayer)
+            //{
+            //    special = controls.Player_1.Special.triggered;
+            //}
+            //else
+            //{
+            //    special = controls.Gameplay.Special.triggered;
+            //}
 
             if (special && slideEnabled)
             {
@@ -212,7 +219,10 @@ public class Player : MonoBehaviour
                 dashHitbox.SetActive(false);    
                 anim.SetBool("dashing", false);
             }
-            
+
+            special = false;
+
+
         }
         
     }
@@ -297,37 +307,56 @@ public class Player : MonoBehaviour
         }
     }
 
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
+
     private void OnEnable()
     {
-        if (script.isMultiplayer)
-        {
-            controls.Player_1.Enable();
-        }
-        else
-        {
-            controls.Gameplay.Enable();
-        }
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_1.Enable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Enable();
+        //}
+        
+        controls.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        if (script.isMultiplayer)
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_1.Disable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Disable();
+        //}
+        controls.Gameplay.Disable();
+    }
+
+    public void OnMove(CallbackContext context)
+    {
+        move = context.ReadValue<Vector2>();
+    }
+
+    public void OnAttack(CallbackContext context)
+    {
+        if (context.performed)
         {
-            controls.Player_1.Disable();
-        }
-        else
-        {
-            controls.Gameplay.Disable();
+            Attack();
         }
     }
 
-    //    void OnMove(CallbackContext context)
-    //    {
-    //        move = context.ReadValue<Vector2>();
-    //    }
-
-    //    void OnAttack(CallbackContext context)
-    //    {
-    //        Attack();
-    //    }
+    public void OnSpecial(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            special = true;
+        }
+    }
 }
