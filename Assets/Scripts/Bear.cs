@@ -36,6 +36,7 @@ public class Bear : MonoBehaviour
     public LifeSlider slider;
     public RebuiltIce rebuiltIce;
 
+    //private UIController _uiController;
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
@@ -89,12 +90,14 @@ public class Bear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //_uiController = GameObject.Find("UIController").GetComponent<UIController>();
         canPickUpSnowBall = true;
         dead = false;
         hasSnowBall = false;
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
         rebuiltIce = GameObject.Find("Calota").GetComponent<RebuiltIce>();
+        slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
 
         sounds = GetComponents<AudioSource>();
     }
@@ -150,8 +153,6 @@ public class Bear : MonoBehaviour
         if (special && !hasSnowBall)
         {
             sounds[0].Play();
-
-            StartCoroutine(SnowBallCoolDown(snowBallCoolDownDuration));
             //anim.SetBool("bearHasSnowBall", true);
             //Debug.Log("snow ball " + hasSnowBall.ToString());
             hasSnowBall = true;
@@ -164,11 +165,11 @@ public class Bear : MonoBehaviour
         special = false;
     }
 
-    IEnumerator SnowBallCoolDown(float time)
+    public IEnumerator SnowBallCoolDown(float time)
     {
         canPickUpSnowBall = false;
         yield return new WaitForSeconds(time);
-        rebuiltIce.rebuiltPlatform();
+        //rebuiltIce.rebuiltPlatform();
         canPickUpSnowBall = true;
     }
 
@@ -208,24 +209,38 @@ public class Bear : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             LoseHealth(25);
         }
-        else if (collision.gameObject.tag == "Water")
+        else if (collision.gameObject.CompareTag("Water"))
         {
             LoseHealth(100);
         }
-        
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        Debug.Log("Colidindo com: " + other);
+        if(other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
             LoseHealth(25);
         }
+        else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
+        {
+            Debug.Log("Colidindo com calota derretida");
+            StartCoroutine(DisableMeshCollider(other));
+        }
+        
+    }
+
+    // Desabilita o Mesh Collider da calota por 2 segundos
+    IEnumerator DisableMeshCollider(Collider calota)
+    {
+        calota.gameObject.GetComponent<MeshCollider>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        calota.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
     
 
@@ -240,7 +255,11 @@ public class Bear : MonoBehaviour
     {
         Debug.LogError("losthealth");
         health -= amount;
-        //slider.SetHealth(health);
+        if (health < 0)
+        {
+            health = 0;
+        }
+        slider.SetHealth(health);
         if (health > 0){
             sounds[2].Play();
             anim.SetTrigger("bearDamage");

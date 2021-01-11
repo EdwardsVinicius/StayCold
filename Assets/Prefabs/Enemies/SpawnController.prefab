@@ -76,7 +76,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &95355172876429702
 Transform:
   m_ObjectHideFlags: 0
@@ -112,15 +112,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horde:
   - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
-    SpawnPositionIndex: 2
+    SpawnPositionIndex: 1
     numberOfEnemies: 3
-    timeBetweenEnemies: 5
-    timeToTheNextHorde: 10
+    timeBetweenEnemies: 2
+    timeToTheNextHorde: 2
+  - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+    SpawnPositionIndex: 3
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 0
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+    SpawnPositionIndex: 6
+    numberOfEnemies: 2
+    timeBetweenEnemies: 1
+    timeToTheNextHorde: 3
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+    SpawnPositionIndex: 1
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 0
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+    SpawnPositionIndex: 5
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 3
+  - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+    SpawnPositionIndex: 7
+    numberOfEnemies: 2
+    timeBetweenEnemies: 1
+    timeToTheNextHorde: 5
+  - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+    SpawnPositionIndex: 4
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 0
   - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
     SpawnPositionIndex: 5
-    numberOfEnemies: 2
-    timeBetweenEnemies: 7
-    timeToTheNextHorde: 10
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 0
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+    SpawnPositionIndex: 2
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 0
+  - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+    SpawnPositionIndex: 6
+    numberOfEnemies: 1
+    timeBetweenEnemies: 0
+    timeToTheNextHorde: 15
+  spawnVFXSamples:
+  - {fileID: 3210135864385368285, guid: 76ef6741432a5cf4ea5b35032407e098, type: 3}
+  - {fileID: 6980898353038712911, guid: b80a6dbce38021c4ca7c013a71cd94d8, type: 3}
   victory: {fileID: 0}
 --- !u!1 &95355173020838301
 GameObject:

@@ -150,6 +150,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631200345242464576}
     m_Modifications:
+    - target: {fileID: 910470239768741902, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
+      propertyPath: m_TranslationOffsets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 910470239768741902, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
+      propertyPath: m_RotationOffsets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 910470239768741902, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
+      propertyPath: m_Sources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1885847061373348384, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
       propertyPath: m_Name
       value: PlayerPenguin
