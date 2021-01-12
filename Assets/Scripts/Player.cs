@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     public LifeSlider slider;
 
+    //private UIController _uiController;
+
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         slider = GameObject.Find("HolderPenguinHUD/Slider").GetComponent<LifeSlider>();
-
+        //_uiController = GameObject.Find("UIController").GetComponent<UIController>();
         controller = GetComponent<CharacterController>();
         anim = penguim.gameObject.GetComponent<Animator>();
 

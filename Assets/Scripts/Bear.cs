@@ -35,6 +35,7 @@ public class Bear : MonoBehaviour
     public LifeSlider slider;
     public RebuiltIce rebuiltIce;
 
+    //private UIController _uiController;
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
@@ -79,6 +80,7 @@ public class Bear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //_uiController = GameObject.Find("UIController").GetComponent<UIController>();
         canPickUpSnowBall = true;
         dead = false;
         hasSnowBall = false;
