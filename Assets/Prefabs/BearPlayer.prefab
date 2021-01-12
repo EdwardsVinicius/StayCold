@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 791749327}
   - component: {fileID: 8915123220828901531}
   - component: {fileID: 9121277408758002647}
+  - component: {fileID: -3838769362204286744}
   m_Layer: 0
   m_Name: BearPlayer
   m_TagString: Player
@@ -158,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202783817996134518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -0.59, y: 2.4, z: -22.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202783817247802879}
@@ -209,11 +210,12 @@ MonoBehaviour:
   throwableSnowBall: {fileID: 3868369210658801457, guid: eac7c571822fbec438809dc19aa031b8, type: 3}
   snowBallSpawn: {fileID: 202783816600427081}
   hitbox: {fileID: 202783817247802875}
-  health: 6
+  health: 100
   dead: 0
   bear: {fileID: 1013599222894968743}
   slider: {fileID: 0}
   rebuiltIce: {fileID: 0}
+  playerIndex: 1
 --- !u!136 &202783817996134474
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -628,6 +630,122 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-3838769362204286744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202783817996134518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d6b0f1101eee92d4280140567004dcd6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4630856d-325d-471c-b390-72a512063f4b
+    m_ActionName: Gameplay/Move[/MY-POWER CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 067dd7ea-9d8b-4ae0-a80b-045c2204232f
+    m_ActionName: Gameplay/Attack[/Keyboard/space,/Keyboard/j,/MY-POWER CO.,LTD.
+      2In1 USB Joystick/button3,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4da6181d-db48-4329-8e3e-841888049956
+    m_ActionName: Gameplay/Special[/Keyboard/z,/Keyboard/k,/MY-POWER CO.,LTD. 2In1
+      USB Joystick/button4,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65af6dbb-b64e-4c30-ae13-e2c05350d14a
+    m_ActionName: Gameplay/Switch[/Keyboard/x,/Keyboard/l,/MY-POWER CO.,LTD. 2In1
+      USB Joystick/button2,/MY-POWER CO.,LTD. 2In1 USB Joystick/button2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54330c7e-a681-4c26-b756-9c5fd662dc1e
+    m_ActionName: Player_1/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER CO.,LTD. 2In1 USB Joystick/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a4883d0-bab3-49d1-a6e7-b90b5f3ffcd6
+    m_ActionName: Player_1/Attack[/Keyboard/m,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0e6b354-a51d-4d59-badb-c11f75cf636d
+    m_ActionName: Player_1/Special[/Keyboard/n,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4286085-7d0e-4731-9c2a-6ff34def9924
+    m_ActionName: Player_2/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER CO.,LTD. 2In1 USB Joystick/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3674314b-d8dd-40a5-ba55-8b41d09a3cd1
+    m_ActionName: Player_2/Attack[/Keyboard/c,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d5c6e48-4818-4e31-a792-8836ef20afa8
+    m_ActionName: Player_2/Special[/Keyboard/v,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button4]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &202783818551177158
 GameObject:
   m_ObjectHideFlags: 0

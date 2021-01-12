@@ -27,8 +27,8 @@ public class ThrowableSnowBall : MonoBehaviour
         //Debug.Log("Collision entered");
         if (collider.gameObject.CompareTag("Ground"))
         {
-            GameObject calota = collider.transform.parent.gameObject;
-            Debug.Log("colisao com Ground " + calota.name);
+            GameObject calota = collider.transform.parent.gameObject.transform.parent.gameObject; // take the grandfather
+            // Debug.Log("colisao com Ground " + calota.name);
             calotasControllers.RebuildingCalota(calota);
             Destroy(this.gameObject);
         }

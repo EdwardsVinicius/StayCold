@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEngine.InputSystem.InputAction;
 
 public class SwitchPlayer : MonoBehaviour
 {
@@ -35,9 +36,9 @@ public class SwitchPlayer : MonoBehaviour
 
     void Start()
     {
-        player1.gameObject.SetActive(false);
-        player2.gameObject.SetActive(true);
-        //animator = GameObject.Find("PlayerPenguin").GetComponentInChildren<Animator>();
+        player1.gameObject.SetActive(true);
+        player2.gameObject.SetActive(false);
+        animator = GameObject.Find("PlayerPenguin").GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -124,5 +125,13 @@ public class SwitchPlayer : MonoBehaviour
     {
         controls.Gameplay.Disable();
     }
+
+    //public void OnSwitch(CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        getKeySwitch();
+    //    }
+    //}
 
 }

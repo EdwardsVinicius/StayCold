@@ -9,6 +9,7 @@ public class CalotasControllers : MonoBehaviour
     public float limitTimerMelt = 20f;
     public bool haveOneMelting;
     int sortedCalota;
+    private static readonly float alertMeltingPosition = Calota.meltedPosition - 0.6f;
     [SerializeField]
     private List<GameObject> queueToMelt;
 
@@ -37,10 +38,10 @@ public class CalotasControllers : MonoBehaviour
     {
         RandomMeltTime();
 
-        //
-        if(queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
+        if (queueToMelt.Count != 0 && queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
         {
-            if (queueToMelt[sortedCalota].transform.position.y == -10f)
+            // Debug.Log(queueToMelt[sortedCalota].name + ": " + queueToMelt[sortedCalota].transform.position.y);
+            if (queueToMelt[sortedCalota].transform.position.y == Calota.meltedPosition - 2f)
             {
                 OnOffCalota(queueToMelt[sortedCalota], false, true);
                 queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted = false;
@@ -71,8 +72,8 @@ public class CalotasControllers : MonoBehaviour
         if (queueToMelt.Count != 0)
         {
             sortedCalota = Random.Range(0, queueToMelt.Count - 1);
-            Debug.Log("sortedCalota: " + sortedCalota);
-            Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
+            // Debug.Log("sortedCalota: " + sortedCalota);
+            // Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
 
             MeltingCalota(queueToMelt[sortedCalota]);  
         }
@@ -84,11 +85,17 @@ public class CalotasControllers : MonoBehaviour
 
     public void OnOffCalota(GameObject calota, bool enabled, bool isTrigged)
     {
-        for (int i = 0; i < calota.gameObject.transform.childCount; i++)
+        // Debug.Log("CALOTA: " + calota.name);
+        for (int i = 0; i < calota.transform.childCount; i++)
         {
-            calota.transform.GetChild(i).GetComponent<MeshRenderer>().enabled = enabled;
-            // desativa o trigger para q o urso não possa mais detectar colisao com a calota agora reconstruida
-            calota.gameObject.transform.GetChild(i).GetComponent<MeshCollider>().isTrigger = isTrigged;
+            GameObject iceTile = calota.transform.GetChild(i).gameObject;
+            // Debug.Log("ICE TILE: " + iceTile.name);
+            for (int j = 0; j < iceTile.transform.childCount; j++)
+            {
+                iceTile.transform.GetChild(j).GetComponent<MeshRenderer>().enabled = enabled;
+                // desativa o trigger para q o urso não possa mais detectar colisao com a calota agora reconstruida
+                iceTile.transform.GetChild(j).GetComponent<MeshCollider>().isTrigger = isTrigged;
+            }
         }
     }
 
@@ -101,11 +108,11 @@ public class CalotasControllers : MonoBehaviour
 
             if (calota.GetComponent<Calota>().beingMelted == true)
             {
-                LeanTween.moveLocalY(calota.gameObject, -0.02f, 1f);
+                LeanTween.moveLocalY(calota.gameObject, alertMeltingPosition, 1f);
 
                 // OnOffCalota(calota, false, true);
 
-                LeanTween.moveLocalY(calota.gameObject, -1f, 5f).setDelay(10f);
+                LeanTween.moveLocalY(calota.gameObject, Calota.meltedPosition, 5f).setDelay(10f);
             }
         }
     }
@@ -121,16 +128,16 @@ public class CalotasControllers : MonoBehaviour
             timerMelt = 0;
             calota.transform.GetComponent<Calota>().beingBuilt = true;
 
-            Debug.Log("SUBINDO " + calota);
-            LeanTween.moveLocalY(calota.gameObject, 0f, 3f);
+            // Debug.Log("SUBINDO " + calota);
+            LeanTween.moveLocalY(calota.gameObject, Calota.builtPosition, 3f);
         }
 
-        if (calota.transform.GetChild(0).GetComponent<MeshRenderer>().enabled == false)
+        if (calota.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled == false)
         {
             calota.transform.GetComponent<Calota>().beingBuilt = true;
 
-            Debug.Log("SUBINDO " + calota);
-            LeanTween.moveLocalY(calota.gameObject, 0f, 3f);
+            // Debug.Log("SUBINDO " + calota);
+            LeanTween.moveLocalY(calota.gameObject, Calota.builtPosition, 3f);
 
             OnOffCalota(calota, true, false);
 
