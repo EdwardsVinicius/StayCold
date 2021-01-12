@@ -106,13 +106,14 @@ public class Bear : MonoBehaviour
     void Update()
     {
         //transform.position = new Vector3(transform.position.x, -1.32f, transform.position.z);
-        if(!dead)
+        if (!dead)
         {
             Move();
-            if(!hasSnowBall && canPickUpSnowBall){
+            if (!hasSnowBall && canPickUpSnowBall)
+            {
                 PickUpSnow();
             }
-            else if(hasSnowBall)
+            else if (hasSnowBall)
             {
                 PlaceSnow();
             }
@@ -177,7 +178,7 @@ public class Bear : MonoBehaviour
     {
         if (special && hasSnowBall)
         {
-            
+
             //Setar animator throwing
             hasSnowBall = false;
             snowBall.SetActive(false);
@@ -200,12 +201,12 @@ public class Bear : MonoBehaviour
         {
             //Setar animator attack 
             sounds[1].Play();
-            anim.SetTrigger("bearAttack");      
-            StartCoroutine(ShowHitboxForSeconds(attackDuration));            
+            anim.SetTrigger("bearAttack");
+            StartCoroutine(ShowHitboxForSeconds(attackDuration));
         }
     }
 
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
@@ -218,21 +219,21 @@ public class Bear : MonoBehaviour
             LoseHealth(100);
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Colidindo com: " + other);
-        if(other.gameObject.CompareTag("Enemy"))
+        // Debug.Log("Colidindo com: " + other);
+        if (other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
             LoseHealth(25);
         }
         else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
         {
-            Debug.Log("Colidindo com calota derretida");
+            // Debug.Log("Colidindo com calota derretida");
             StartCoroutine(DisableMeshCollider(other));
         }
-        
+
     }
 
     // Desabilita o Mesh Collider da calota por 2 segundos
@@ -242,7 +243,7 @@ public class Bear : MonoBehaviour
         yield return new WaitForSeconds(2f);
         calota.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
-    
+
 
     IEnumerator ShowHitboxForSeconds(float time)
     {
@@ -260,7 +261,8 @@ public class Bear : MonoBehaviour
             health = 0;
         }
         slider.SetHealth(health);
-        if (health > 0){
+        if (health > 0)
+        {
             sounds[2].Play();
             anim.SetTrigger("bearDamage");
         }

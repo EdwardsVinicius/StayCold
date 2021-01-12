@@ -1220,7 +1220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95355172876429697, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95355172876429702, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1466,28 +1466,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7768122591846305301, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
   m_PrefabInstance: {fileID: 2769538465079298920}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1631309245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8035116286452494721, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
-  m_PrefabInstance: {fileID: 1647534707}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1631309246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631309245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73358fea6f38d3c41add140ac753a33d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerMelt: 0
-  limitTimerMelt: 5
-  haveOneMelting: 0
-  queueToMelt: []
-  queueToRebuilt: []
 --- !u!1001 &1647534707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1814,6 +1792,10 @@ PrefabInstance:
     - target: {fileID: 2105119632, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667754333380396364, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
+      propertyPath: limitTimerMelt
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8035116286452494721, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_Name
