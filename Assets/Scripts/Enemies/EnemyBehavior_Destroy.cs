@@ -113,7 +113,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
     private void GoToIce()
     {
-        if(iceChoosed != null && iceChoosed.activeSelf == true)
+        if (iceChoosed != null && iceChoosed.transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().enabled == true)
         {
             if(transform.position == nextPos)
             {
@@ -132,11 +132,30 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         }
     }
 
+    Vector3 OnTheMiddle(GameObject calota)
+    {
+        float x=0, z=0;
+        Vector3 newPosition;
+
+        for (int i = 0; i < calota.transform.childCount; i++)
+        {
+            x += calota.transform.GetChild(i).transform.position.x;
+            z += calota.transform.GetChild(i).transform.position.z;
+        }
+
+        newPosition = new Vector3(x/calota.transform.childCount, transform.position.y, z/calota.transform.childCount);
+        Debug.Log(newPosition);
+        return newPosition;
+    }
+
     private void ChooseIce()
     {
         GameObject calota = GameObject.Find("CalotaHexagonal");
         iceChoosed = calota.transform.GetChild(Random.Range(1, calota.transform.childCount - 1)).gameObject;
-        nextPos = new Vector3(iceChoosed.transform.position.x, transform.position.y, iceChoosed.transform.position.z);
+        Debug.Log("Ice Choosed: " + iceChoosed.name);
+        // nextPos = new Vector3(iceChoosed.transform.localPosition.x, iceChoosed.transform.localPosition.y, iceChoosed.transform.localPosition.z);
+        nextPos = OnTheMiddle(iceChoosed);
+        Debug.Log("nextPos: " + nextPos);
         LookDirection(nextPos);
 
         anim.SetTrigger("Running");
@@ -145,6 +164,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     private void MoveToIce()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
+        // Debug.Log("position: " + transform.position);
     }
 
     private void DetonationCountdown()
@@ -159,7 +179,9 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
     private void StartDetonation()
     {
-        iceChoosed.SetActive(false);
+        FindObjectOfType<CalotasControllers>().DestroyCalota(iceChoosed);
+        // iceChoosed.SetActive(false);
+        // Debug.Log("Ice Choosed: " + iceChoosed.name);
 
         GameObject selfDesctructionExplosion = Instantiate(selfDestructionVFXSample, selfDestructionVFXSample.transform.position, selfDestructionVFXSample.transform.rotation);
         selfDesctructionExplosion.SetActive(true);
