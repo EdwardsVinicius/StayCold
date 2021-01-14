@@ -117,6 +117,23 @@ public class CalotasControllers : MonoBehaviour
         }
     }
 
+    // função para ser usada pelo Magma_Creep
+    public void DestroyCalota(GameObject calota)
+    {
+        if ((queueToMelt.Contains(calota) == true))
+        {
+            OnOffCalota(calota, false, true);
+            LeanTween.moveLocalY(calota.gameObject, Calota.meltedPosition, 5f);
+            if (calota.transform.GetComponent<Calota>().beingMelted == true)
+            {
+                calota.transform.GetComponent<Calota>().beingMelted = false;
+                haveOneMelting = false;
+            }
+            queueToRebuilt.Add(calota);
+            queueToMelt.Remove(calota);
+        }
+    }
+
     public void RebuildingCalota(GameObject calota)
     {
         // se a calota estiver derretendo, o urso ainda pode reconstrui-la antes q o derretimento seja completo
