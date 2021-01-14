@@ -197,7 +197,7 @@ public class Bear : MonoBehaviour
 
     private void Attack()
     {
-        if (!hasSnowBall)
+        if (!hasSnowBall && !dead)
         {
             //Setar animator attack 
             sounds[1].Play();
@@ -226,7 +226,7 @@ public class Bear : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             sounds[1].Play();
-            LoseHealth(25);
+            // LoseHealth(25);
         }
         else if (other.gameObject.CompareTag("Ground") && other.gameObject.GetComponent<MeshRenderer>().enabled == false)
         {
