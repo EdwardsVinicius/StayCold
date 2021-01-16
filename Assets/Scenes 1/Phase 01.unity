@@ -2064,7 +2064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1653461177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,10 +2078,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  peng: {fileID: 0}
-  bear: {fileID: 0}
-  victory: {fileID: 0}
-  defeat: {fileID: 0}
+  victory: {fileID: 1027344582}
+  defeat: {fileID: 1027344584}
 --- !u!4 &1653461178
 Transform:
   m_ObjectHideFlags: 0

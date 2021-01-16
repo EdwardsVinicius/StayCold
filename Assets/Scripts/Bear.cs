@@ -209,12 +209,12 @@ public class Bear : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Collision entered");
+        Debug.Log("Collision entered");
         if (collision.gameObject.CompareTag("Enemy"))
         {
             LoseHealth(25);
         }
-        else if (collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Water"))
         {
             LoseHealth(100);
             FindObjectOfType<ScoreController>().GameOver();
