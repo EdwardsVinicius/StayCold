@@ -217,6 +217,7 @@ public class EnemyBehavior_Shoot : MonoBehaviour
     {
         if (collision.tag == "Hitbox")
         {
+            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }
