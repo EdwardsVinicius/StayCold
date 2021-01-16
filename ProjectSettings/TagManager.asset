@@ -9,6 +9,7 @@ TagManager:
   - Hitbox
   - Water
   - StartPoint
+  - Projectile
   layers:
   - Default
   - TransparentFX

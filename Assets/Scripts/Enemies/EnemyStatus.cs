@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStatus : MonoBehaviour
 {
+    public int enemyIDInstantiate;
+
     public float health = 10;
 
     private AudioSource[] sounds;
@@ -38,5 +40,15 @@ public class EnemyStatus : MonoBehaviour
     {
         Debug.Log("entrouEnemy");
         health -= amount;
+    }
+
+    public void SetEnemyIDInstantiate(int _enemyID)
+    {
+        enemyIDInstantiate = _enemyID;
+    }
+
+    public int GetEnemyIDInstantiate()
+    {
+        return enemyIDInstantiate;
     }
 }

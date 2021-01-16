@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     private float turnMoveTime = .1f;
     private float turnMoveVelocity;
     private CharacterController controller;
+    public GameObject attackHitVFXSample;
     public GameObject hitbox;
     public GameObject dashHitbox;
     private bool slideEnabled = true;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
     public GameObject penguim;
     private Animator anim;
     private bool isDashing = false;
+    private bool isAttacking = false;
     public bool isDead = false;
     private float dashTime = -1;
     private float dashDuration = 0.3f;
@@ -39,35 +42,57 @@ public class Player : MonoBehaviour
 
     public LifeSlider slider;
 
+    //private UIController _uiController;
+
     InputManager controls;
     PlayerInput playerInput;
     Vector2 move;
     StartPoint script;
 
+    [SerializeField]
+    private int playerIndex = 0;
+
+    private bool special;
+    [System.Serializable]
+    public class VFXPool
+    {
+        public string tag;
+        public GameObject VFXPrefab;
+        public int size;
+    }
+
+    [Header("DictonaryPools")]
+    public List<VFXPool> pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+
     private void Awake()
     {
         controls = new InputManager();
 
-        GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        script = startPoint.GetComponent<StartPoint>();
-        playerInput = GetComponent<PlayerInput>();
+        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        //script = startPoint.GetComponent<StartPoint>();
+        //playerInput = GetComponent<PlayerInput>();
 
-        if (script.isMultiplayer)
-        {
-            playerInput.SwitchCurrentActionMap("Player_1");
+        //if (script.isMultiplayer)
+        //{
 
-            controls.Player_1.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Player_1.Move.canceled += ctx => move = Vector2.zero;
+        //    playerInput.SwitchCurrentActionMap("Player_1");
+        //    //controls.Player_1.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[0]);
 
-            controls.Player_1.Attack.performed += ctx => Attack();
-        }
-        else
-        {
-            controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-            controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+        //    controls.Player_1.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Player_1.Move.canceled += ctx => move = Vector2.zero;
 
-            controls.Gameplay.Attack.performed += ctx => Attack();
-        }
+        //    controls.Player_1.Attack.performed += ctx => Attack();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //    controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+        //    controls.Gameplay.Attack.performed += ctx => Attack();
+        //}
+
+        //controls.Gameplay.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[0]);
 
         //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
@@ -80,11 +105,26 @@ public class Player : MonoBehaviour
     void Start()
     {
         slider = GameObject.Find("HolderPenguinHUD/Slider").GetComponent<LifeSlider>();
-
+        //_uiController = GameObject.Find("UIController").GetComponent<UIController>();
         controller = GetComponent<CharacterController>();
         anim = penguim.gameObject.GetComponent<Animator>();
 
         sounds = GetComponents<AudioSource>();
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+        foreach (VFXPool pool in pools)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.VFXPrefab);
+                objectPool.Enqueue(obj);
+            }
+
+            poolDictionary.Add(pool.tag, objectPool);
+        }
     }
 
     // Update is called once per frame
@@ -121,12 +161,23 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
+        if (isAttacking)
+            return;
         //inserir bottão de ataque
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
 
         //}
         sounds[0].Play();
+
+        anim.SetTrigger("attack");
+        speed /= 3;
+        //ActivateHitbox();
+    }
+
+    public void ActivateHitbox()
+    {
+        isAttacking = true;
         StartCoroutine(ShowHitboxForSeconds());
     }
 
@@ -139,15 +190,14 @@ public class Player : MonoBehaviour
         }
         else
         {
-            bool special;
-            if (script.isMultiplayer)
-            {
-                special = controls.Player_1.Special.triggered;
-            }
-            else
-            {
-                special = controls.Gameplay.Special.triggered;
-            }
+            //if (script.isMultiplayer)
+            //{
+            //    special = controls.Player_1.Special.triggered;
+            //}
+            //else
+            //{
+            //    special = controls.Gameplay.Special.triggered;
+            //}
 
             if (special && slideEnabled)
             {
@@ -169,7 +219,10 @@ public class Player : MonoBehaviour
                 dashHitbox.SetActive(false);    
                 anim.SetBool("dashing", false);
             }
-            
+
+            special = false;
+
+
         }
         
     }
@@ -192,7 +245,9 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision entered");
-        if (collision.gameObject.tag == "Enemy" && !immortal)
+        if ((collision.gameObject.tag == "Enemy" ||
+            collision.gameObject.tag == "Projectile")
+            && !immortal)
         {
             sounds[2].Play();
             anim.SetTrigger("damage");
@@ -216,6 +271,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("deathTrigger");
                 isDead = true;
                 speed = 0;
+                FindObjectOfType<ScoreController>().GameOver();
             }
         }
 
@@ -223,20 +279,31 @@ public class Player : MonoBehaviour
     
     IEnumerator ShowHitboxForSeconds()
     {
-        //yield return new WaitForSeconds(attackLag);
-        //isMovable = false;
-        anim.SetTrigger("attack");
-        speed /= 3;
         hitbox.SetActive(true);
+
         yield return new WaitForSeconds(attackDuration);
         hitbox.SetActive(false);
         //isMovable = true;
+        isAttacking = false;
         speed *= 3;
+    }
+
+    public void ShowHitVFX()
+    {
+        GameObject attackHitVFX = poolDictionary["attackHitVFX"].Dequeue();
+
+        attackHitVFX.SetActive(true);
+        attackHitVFX.transform.position = attackHitVFXSample.transform.position;
+        attackHitVFX.transform.eulerAngles = attackHitVFXSample.transform.rotation.eulerAngles;
+        attackHitVFX.GetComponent<ParticleSystem>().Clear();
+        attackHitVFX.GetComponent<ParticleSystem>().Play();
+
+        poolDictionary["attackHitVFX"].Enqueue(attackHitVFX);
     }
 
     private void LosePlayerHealth(int amount)
     {
-        Debug.Log("entrou");
+        // Debug.Log("entrou");
         health -= amount;
         if (health < 0)
         {
@@ -244,37 +311,56 @@ public class Player : MonoBehaviour
         }
     }
 
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
+
     private void OnEnable()
     {
-        if (script.isMultiplayer)
-        {
-            controls.Player_1.Enable();
-        }
-        else
-        {
-            controls.Gameplay.Enable();
-        }
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_1.Enable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Enable();
+        //}
+        
+        controls.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        if (script.isMultiplayer)
+        //if (script.isMultiplayer)
+        //{
+        //    controls.Player_1.Disable();
+        //}
+        //else
+        //{
+        //    controls.Gameplay.Disable();
+        //}
+        controls.Gameplay.Disable();
+    }
+
+    public void OnMove(CallbackContext context)
+    {
+        move = context.ReadValue<Vector2>();
+    }
+
+    public void OnAttack(CallbackContext context)
+    {
+        if (context.performed)
         {
-            controls.Player_1.Disable();
-        }
-        else
-        {
-            controls.Gameplay.Disable();
+            Attack();
         }
     }
 
-    //    void OnMove(CallbackContext context)
-    //    {
-    //        move = context.ReadValue<Vector2>();
-    //    }
-
-    //    void OnAttack(CallbackContext context)
-    //    {
-    //        Attack();
-    //    }
+    public void OnSpecial(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            special = true;
+        }
+    }
 }

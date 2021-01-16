@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 202783817247802872}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,9 +57,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202783817247802875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.27, z: 2.12}
-  m_LocalScale: {x: 2.69, y: 3.15, z: 1.52}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.56, y: 2.71, z: 2.06}
+  m_LocalScale: {x: 2.0591369, y: 2.085822, z: 2.6224742}
   m_Children: []
   m_Father: {fileID: 202783817996134519}
   m_RootOrder: 0
@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 791749327}
   - component: {fileID: 8915123220828901531}
   - component: {fileID: 9121277408758002647}
+  - component: {fileID: -3838769362204286744}
   m_Layer: 0
   m_Name: BearPlayer
   m_TagString: Player
@@ -158,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202783817996134518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -0.59, y: 2.4, z: -22.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202783817247802879}
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   attackDuration: 0.6
+  hitboxDuration: 0.15
   gravityValue: -18
   hasSnowBall: 0
   canPickUpSnowBall: 0
@@ -209,11 +211,12 @@ MonoBehaviour:
   throwableSnowBall: {fileID: 3868369210658801457, guid: eac7c571822fbec438809dc19aa031b8, type: 3}
   snowBallSpawn: {fileID: 202783816600427081}
   hitbox: {fileID: 202783817247802875}
-  health: 6
+  health: 100
   dead: 0
   bear: {fileID: 1013599222894968743}
   slider: {fileID: 0}
   rebuiltIce: {fileID: 0}
+  playerIndex: 1
 --- !u!136 &202783817996134474
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -225,9 +228,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.16261
-  m_Height: 4.4305983
+  m_Height: 4.5045104
   m_Direction: 1
-  m_Center: {x: 0.0000009536743, y: 2.2053938, z: 0}
+  m_Center: {x: 0.0000009536743, y: 2.1684377, z: 0}
 --- !u!82 &5073694238687747059
 AudioSource:
   m_ObjectHideFlags: 0
@@ -628,6 +631,122 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-3838769362204286744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202783817996134518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d6b0f1101eee92d4280140567004dcd6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4630856d-325d-471c-b390-72a512063f4b
+    m_ActionName: Gameplay/Move[/MY-POWER CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 067dd7ea-9d8b-4ae0-a80b-045c2204232f
+    m_ActionName: Gameplay/Attack[/Keyboard/space,/Keyboard/j,/MY-POWER CO.,LTD.
+      2In1 USB Joystick/button3,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4da6181d-db48-4329-8e3e-841888049956
+    m_ActionName: Gameplay/Special[/Keyboard/z,/Keyboard/k,/MY-POWER CO.,LTD. 2In1
+      USB Joystick/button4,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65af6dbb-b64e-4c30-ae13-e2c05350d14a
+    m_ActionName: Gameplay/Switch[/Keyboard/x,/Keyboard/l,/MY-POWER CO.,LTD. 2In1
+      USB Joystick/button2,/MY-POWER CO.,LTD. 2In1 USB Joystick/button2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54330c7e-a681-4c26-b756-9c5fd662dc1e
+    m_ActionName: Player_1/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER CO.,LTD. 2In1 USB Joystick/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a4883d0-bab3-49d1-a6e7-b90b5f3ffcd6
+    m_ActionName: Player_1/Attack[/Keyboard/m,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0e6b354-a51d-4d59-badb-c11f75cf636d
+    m_ActionName: Player_1/Special[/Keyboard/n,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4286085-7d0e-4731-9c2a-6ff34def9924
+    m_ActionName: Player_2/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/stick,/MY-POWER CO.,LTD. 2In1 USB Joystick/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3674314b-d8dd-40a5-ba55-8b41d09a3cd1
+    m_ActionName: Player_2/Attack[/Keyboard/c,/MY-POWER CO.,LTD. 2In1 USB Joystick/button3,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d5c6e48-4818-4e31-a792-8836ef20afa8
+    m_ActionName: Player_2/Special[/Keyboard/v,/MY-POWER CO.,LTD. 2In1 USB Joystick/button4,/MY-POWER
+      CO.,LTD. 2In1 USB Joystick/button4]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &202783818551177158
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +861,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8464555151149844247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013599222894968743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4045602ff16ff4c97e998e8d1c2d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAnimEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202783817996134516}
+        m_TargetAssemblyTypeName: Bear, Assembly-CSharp
+        m_MethodName: ActivateHitbox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &202783816912798454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -751,15 +897,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8841739198599650559, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.6454546
+      value: -14.806654
       objectReference: {fileID: 0}
     - target: {fileID: -8841739198599650559, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.46777946
+      value: 5.236284
       objectReference: {fileID: 0}
     - target: {fileID: -8841739198599650559, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -40.33455
+      value: 46.262268
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -807,15 +953,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7675266070985544565, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 17.664406
+      value: 34.92518
       objectReference: {fileID: 0}
     - target: {fileID: -7675266070985544565, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0.00003123942
       objectReference: {fileID: 0}
     - target: {fileID: -7675266070985544565, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -67.321
+      value: 68.09536
+      objectReference: {fileID: 0}
+    - target: {fileID: -6319530710894130446, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: -6319530710894130446, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: -6319530710894130446, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0142944
+      objectReference: {fileID: 0}
+    - target: {fileID: -6319530710894130446, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6981875
+      objectReference: {fileID: 0}
+    - target: {fileID: -6319530710894130446, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -4588419804332988156, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
+      propertyPath: m_TagString
+      value: Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: -2198888584636164399, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -823,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2198888584636164399, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 72.33559
+      value: -54.771484
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_Name
@@ -835,75 +1005,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2450117547123244242, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 33.44227
+      value: -6.493726
       objectReference: {fileID: 0}
     - target: {fileID: 2450117547123244242, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.72999483
+      value: 0.12566154
       objectReference: {fileID: 0}
     - target: {fileID: 2450117547123244242, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.92982924
+      value: -0.7212218
       objectReference: {fileID: 0}
     - target: {fileID: 3343607512226057917, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.28941128
+      value: -23.21843
       objectReference: {fileID: 0}
     - target: {fileID: 3343607512226057917, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 68.26418
+      value: 25.581642
       objectReference: {fileID: 0}
     - target: {fileID: 3343607512226057917, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.0681548
+      value: -26.866808
       objectReference: {fileID: 0}
     - target: {fileID: 3533373658332208025, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -84.754166
+      value: -70.82274
       objectReference: {fileID: 0}
     - target: {fileID: 3533373658332208025, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 95.32818
+      value: 104.697334
       objectReference: {fileID: 0}
     - target: {fileID: 3533373658332208025, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -89.82689
+      value: -86.94774
       objectReference: {fileID: 0}
     - target: {fileID: 4506798430390574001, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 17.664412
+      value: 34.925186
       objectReference: {fileID: 0}
     - target: {fileID: 4506798430390574001, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -179.99998
+      value: -0.000017279302
       objectReference: {fileID: 0}
     - target: {fileID: 4506798430390574001, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 141.57578
+      value: -0.4458021
       objectReference: {fileID: 0}
     - target: {fileID: 8278597001947978144, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -34.739628
+      value: -53.142677
       objectReference: {fileID: 0}
     - target: {fileID: 8278597001947978144, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 9.65533
+      value: 4.5928345
       objectReference: {fileID: 0}
     - target: {fileID: 8278597001947978144, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -99.85049
+      value: -114.72029
       objectReference: {fileID: 0}
     - target: {fileID: 9153160505804848237, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 26.755905
+      value: 38.735577
       objectReference: {fileID: 0}
     - target: {fileID: 9153160505804848237, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -163.60388
+      value: -24.411804
       objectReference: {fileID: 0}
     - target: {fileID: 9153160505804848237, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -21.99265
+      value: 126.09164
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3422a18034a4984a84677e5ea8dbd31, type: 3}

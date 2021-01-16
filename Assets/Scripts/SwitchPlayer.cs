@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEngine.InputSystem.InputAction;
 
 public class SwitchPlayer : MonoBehaviour
 {
@@ -124,5 +125,13 @@ public class SwitchPlayer : MonoBehaviour
     {
         controls.Gameplay.Disable();
     }
+
+    //public void OnSwitch(CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        getKeySwitch();
+    //    }
+    //}
 
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
     public int score;
-    public Player peng;
-    public Bear bear;
+    //public Player peng;
+    //public Bear bear;
     public GameObject victory;
     public GameObject defeat;
 
@@ -27,7 +27,7 @@ public class ScoreController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bear.dead && peng.isDead)
+        /*if (bear.dead && peng.isDead)
         {
             // Time.timeScale = 0;
             defeat.SetActive(defeat);
@@ -36,11 +36,17 @@ public class ScoreController : MonoBehaviour
         {
             // Time.timeScale = 0;
             victory.SetActive(defeat);
-        }
+        }*/
     }
 
     public void scoreUp(int value)
     {
         score += value;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        defeat.SetActive(true);
     }
 }
