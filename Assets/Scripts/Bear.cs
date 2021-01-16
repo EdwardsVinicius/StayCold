@@ -217,6 +217,7 @@ public class Bear : MonoBehaviour
         else if (collision.gameObject.CompareTag("Water"))
         {
             LoseHealth(100);
+            FindObjectOfType<ScoreController>().GameOver();
         }
     }
 

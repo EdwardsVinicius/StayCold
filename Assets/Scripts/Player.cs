@@ -271,6 +271,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("deathTrigger");
                 isDead = true;
                 speed = 0;
+                FindObjectOfType<ScoreController>().GameOver();
             }
         }
 
