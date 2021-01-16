@@ -12,6 +12,8 @@ public class SwitchPlayer : MonoBehaviour
     private Animator animator;
     private Vector3 p1, p2, parent;
     private int onPlayer = 1;
+    Bear bear;
+    Player peng;
 
 
     [SerializeField]
@@ -31,6 +33,8 @@ public class SwitchPlayer : MonoBehaviour
         follow = player1.transform;
         originalLocalPosition = follow.localPosition;
         originalLocalRotation = follow.localRotation;
+        bear = player2.GetComponent<Bear>();
+        peng = player1.GetComponent<Player>();
     }
 
 
@@ -53,6 +57,8 @@ public class SwitchPlayer : MonoBehaviour
         //}
         
         followActivePlayer();
+        if (bear.dead && peng.isDead)
+            FindObjectOfType<ScoreController>().GameOver();
     }
 
     void SwitchPlayers()
@@ -60,6 +66,8 @@ public class SwitchPlayer : MonoBehaviour
         switch (onPlayer)
         {
             case 1:
+                if (bear.dead)
+                    break;
                 onPlayer = 2;
                 p1 = player1.transform.position;
                 player2.transform.position = new Vector3(p1.x, p1.y, p1.z);
@@ -71,6 +79,8 @@ public class SwitchPlayer : MonoBehaviour
                 break;
 
             case 2:
+                if (peng.isDead)
+                    break;
                 onPlayer = 1;
                 p2 = player2.transform.position;
                 player1.transform.position = new Vector3(p2.x, p2.y , p2.z);
