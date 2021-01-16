@@ -302,7 +302,7 @@ public class Player : MonoBehaviour
 
     private void LosePlayerHealth(int amount)
     {
-        Debug.Log("entrou");
+        // Debug.Log("entrou");
         health -= amount;
         if (health < 0)
         {

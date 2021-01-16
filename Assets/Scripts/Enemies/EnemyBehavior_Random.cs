@@ -145,9 +145,11 @@ public class EnemyBehavior_Random : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Hitbox")
+        if (collision.CompareTag("Hitbox"))
         {
-            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
+            HitboxController hitboxController = collision.GetComponent<HitboxController>();
+
+            if(hitboxController != null) hitboxController.ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }
