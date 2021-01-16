@@ -280,6 +280,15 @@ public class Player : MonoBehaviour
     {
         hitbox.SetActive(true);
 
+        yield return new WaitForSeconds(attackDuration);
+        hitbox.SetActive(false);
+        //isMovable = true;
+        isAttacking = false;
+        speed *= 3;
+    }
+
+    public void ShowHitVFX()
+    {
         GameObject attackHitVFX = poolDictionary["attackHitVFX"].Dequeue();
 
         attackHitVFX.SetActive(true);
@@ -289,12 +298,6 @@ public class Player : MonoBehaviour
         attackHitVFX.GetComponent<ParticleSystem>().Play();
 
         poolDictionary["attackHitVFX"].Enqueue(attackHitVFX);
-
-        yield return new WaitForSeconds(attackDuration);
-        hitbox.SetActive(false);
-        //isMovable = true;
-        isAttacking = false;
-        speed *= 3;
     }
 
     private void LosePlayerHealth(int amount)

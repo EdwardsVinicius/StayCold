@@ -10,6 +10,7 @@ public class Bear : MonoBehaviour
     private float turnMoveTime = .1f;
     private float turnMoveVelocity;
     public float attackDuration = 0;
+    public float hitboxDuration = 0.15f;
     private CharacterController controller;
 
     //Teste gravidade
@@ -202,7 +203,6 @@ public class Bear : MonoBehaviour
             //Setar animator attack 
             sounds[1].Play();
             anim.SetTrigger("bearAttack");
-            StartCoroutine(ShowHitboxForSeconds(attackDuration));
         }
     }
 
@@ -244,11 +244,15 @@ public class Bear : MonoBehaviour
         calota.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
 
+    public void ActivateHitbox()
+    {
+        StartCoroutine(ShowHitboxForSeconds());
+    }
 
-    IEnumerator ShowHitboxForSeconds(float time)
+    public IEnumerator ShowHitboxForSeconds()
     {
         hitbox.SetActive(true);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(hitboxDuration);
         hitbox.SetActive(false);
     }
 
