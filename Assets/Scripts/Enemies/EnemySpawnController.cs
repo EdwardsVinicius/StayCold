@@ -78,7 +78,7 @@ public class EnemySpawnController : MonoBehaviour
     {
         enemiesAlive++;
 
-        Debug.Log(enemyObject.GetComponent<EnemyStatus>().GetEnemyIDInstantiate());
+        // Debug.Log(enemyObject.GetComponent<EnemyStatus>().GetEnemyIDInstantiate());
         Instantiate(spawnVFXSamples[enemyObject.GetComponent<EnemyStatus>().GetEnemyIDInstantiate()], enemyPosition, Quaternion.identity);
         yield return new WaitForSeconds(spawnDelay);
         Instantiate(enemyObject, enemyPosition, Quaternion.identity);

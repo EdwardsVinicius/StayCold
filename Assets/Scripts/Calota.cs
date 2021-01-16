@@ -3,12 +3,13 @@
 public class Calota : MonoBehaviour
 {
     public static float builtPosition, meltedPosition;
-    public bool beingBuilt, beingMelted;
+    public bool beingBuilt, beingMelted, willBeDestroyed;
 
     private void Start()
     {
         beingBuilt = false;
         beingMelted = false;
+        willBeDestroyed = false;
         builtPosition = gameObject.transform.localPosition.y;
         // Debug.Log(gameObject.name + " y: " + builtPosition);
         meltedPosition = builtPosition - 10;

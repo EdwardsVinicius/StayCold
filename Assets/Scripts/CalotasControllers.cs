@@ -38,7 +38,7 @@ public class CalotasControllers : MonoBehaviour
     {
         RandomMeltTime();
 
-        if (queueToMelt.Count != 0 && queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
+        if (queueToMelt.Count > 0 && queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
         {
             // Debug.Log(queueToMelt[sortedCalota].name + ": " + queueToMelt[sortedCalota].transform.localPosition.y);
             if (queueToMelt[sortedCalota].transform.localPosition.y == Calota.meltedPosition)
@@ -69,13 +69,23 @@ public class CalotasControllers : MonoBehaviour
 
     void MeltingRandomCalota()
     {
-        if (queueToMelt.Count != 0)
+        if (queueToMelt.Count > 0)
         {
             sortedCalota = Random.Range(0, queueToMelt.Count - 1);
             // Debug.Log("sortedCalota: " + sortedCalota);
-            // Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
+            Debug.Log("Calota sorteada: " + queueToMelt[sortedCalota]);
 
-            MeltingCalota(queueToMelt[sortedCalota]);
+            if(queueToMelt[sortedCalota].GetComponent<Calota>().willBeDestroyed == true)
+            {
+                Debug.Log("Sorteando outra calota");
+                sortedCalota = Random.Range(0, queueToMelt.Count - 1);
+            }
+            else
+            {
+                Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
+                MeltingCalota(queueToMelt[sortedCalota]);
+            }
+
         }
         else // Game Over
         {
@@ -129,6 +139,7 @@ public class CalotasControllers : MonoBehaviour
                 calota.transform.GetComponent<Calota>().beingMelted = false;
                 haveOneMelting = false;
             }
+            calota.GetComponent<Calota>().willBeDestroyed = false;
             queueToRebuilt.Add(calota);
             queueToMelt.Remove(calota);
         }

@@ -144,7 +144,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         }
 
         newPosition = new Vector3(x/calota.transform.childCount, transform.position.y, z/calota.transform.childCount);
-        Debug.Log(newPosition);
+        // Debug.Log(newPosition);
         return newPosition;
     }
 
@@ -152,13 +152,21 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     {
         GameObject calota = GameObject.Find("CalotaHexagonal");
         iceChoosed = calota.transform.GetChild(Random.Range(1, calota.transform.childCount - 1)).gameObject;
-        Debug.Log("Ice Choosed: " + iceChoosed.name);
-        // nextPos = new Vector3(iceChoosed.transform.localPosition.x, iceChoosed.transform.localPosition.y, iceChoosed.transform.localPosition.z);
-        nextPos = OnTheMiddle(iceChoosed);
-        Debug.Log("nextPos: " + nextPos);
-        LookDirection(nextPos);
+        if (iceChoosed.GetComponent<Calota>().willBeDestroyed || iceChoosed.GetComponent<Calota>().beingMelted)
+        {
+            ChooseIce();
+        }
+        else
+        {
+            Debug.Log("Ice Choosed: " + iceChoosed.name);
+            iceChoosed.GetComponent<Calota>().willBeDestroyed = true;
+            // nextPos = new Vector3(iceChoosed.transform.localPosition.x, iceChoosed.transform.localPosition.y, iceChoosed.transform.localPosition.z);
+            nextPos = OnTheMiddle(iceChoosed);
+            // Debug.Log("nextPos: " + nextPos);
+            LookDirection(nextPos);
 
-        anim.SetTrigger("Running");
+            anim.SetTrigger("Running");
+        }
     }
 
     private void MoveToIce()
@@ -241,9 +249,11 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Hitbox")
+        if (collision.CompareTag("Hitbox"))
         {
-            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
+            HitboxController hitboxController = collision.GetComponent<HitboxController>();
+
+            if (hitboxController != null) hitboxController.ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }
