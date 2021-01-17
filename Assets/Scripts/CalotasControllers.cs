@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class CalotasControllers : MonoBehaviour
 {
+    [Header("TOTAL DE CALOTAS")]
+
+    public List<GameObject> calotas;
+    
     [Header("MELT VARIABLES")]
 
     public float timerMelt = 0f;
     public float limitTimerMelt = 20f;
     public bool haveOneMelting;
-    int sortedCalota;
+    GameObject sortedCalota;
     private static readonly float alertMeltingPosition = Calota.meltedPosition - 0.6f;
-    [SerializeField]
-    private List<GameObject> queueToMelt;
+    // [SerializeField]
 
     [Header("REBUILT VARIABLES")]
 
@@ -25,33 +28,37 @@ public class CalotasControllers : MonoBehaviour
 
     void Start()
     {
-        // i começa com 1 só para não adicionar a calota Limite Fim
+        // se i começar com 1 a calota Limite Fim não é adicionada
         for (int i = 1; i < this.GetComponentInChildren<Transform>().childCount; i++)
         {
             //Debug.Log(this.GetComponentInChildren<Transform>().GetChild(i).name);
-            queueToMelt.Add(this.GetComponentInChildren<Transform>().GetChild(i).gameObject);
+            calotas.Add(this.GetComponentInChildren<Transform>().GetChild(i).gameObject);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        RandomMeltTime();
-
-        if (queueToMelt.Count > 0 && queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted == true)
+        if(calotas.Count > 0)
         {
-            // Debug.Log(queueToMelt[sortedCalota].name + ": " + queueToMelt[sortedCalota].transform.localPosition.y);
-            if (queueToMelt[sortedCalota].transform.localPosition.y == Calota.meltedPosition)
+            RandomMeltTime();
+
+            if (sortedCalota!=null && sortedCalota.GetComponent<Calota>().beingMelted == true)
             {
-                OnOffCalota(queueToMelt[sortedCalota], false, true);
-                queueToMelt[sortedCalota].transform.GetComponent<Calota>().beingMelted = false;
+                // Debug.Log(queueToMelt[sortedCalota].name + ": " + queueToMelt[sortedCalota].transform.localPosition.y);
+                if (sortedCalota.transform.localPosition.y == Calota.meltedPosition)
+                {
+                    OnOffCalota(sortedCalota, false, true);
+                    sortedCalota.transform.GetComponent<Calota>().beingMelted = false;
 
-                if (queueToRebuilt.Contains(queueToMelt[sortedCalota]) == false) queueToRebuilt.Add(queueToMelt[sortedCalota]);
+                    if (queueToRebuilt.Contains(sortedCalota) == false) queueToRebuilt.Add(sortedCalota);
 
-                if (queueToRebuilt.Contains(queueToMelt[sortedCalota]) == true) queueToMelt.Remove(queueToMelt[sortedCalota]);
-                haveOneMelting = false;
+                    if (queueToRebuilt.Contains(sortedCalota) == true) calotas.Remove(sortedCalota);
+                    haveOneMelting = false;
+                }
             }
         }
+        // else GAME OVER
     }
 
     void RandomMeltTime()
@@ -67,30 +74,29 @@ public class CalotasControllers : MonoBehaviour
         }
     }
 
+    public GameObject ChooseRandomCalota()
+    {
+        var sortedCalota = Random.Range(0, calotas.Count);
+
+        if (calotas[sortedCalota].GetComponent<Calota>().willBeDestroyed == true || calotas[sortedCalota].GetComponent<Calota>().beingMelted == true)
+        {
+            Debug.Log("Sorteando outra calota");
+            return ChooseRandomCalota();
+        }
+        else
+        {
+            // Debug.Log("sortedCalota: " + sortedCalota);
+            return calotas[sortedCalota];
+        }
+
+    }
+
     void MeltingRandomCalota()
     {
-        if (queueToMelt.Count > 0)
-        {
-            sortedCalota = Random.Range(0, queueToMelt.Count - 1);
-            // Debug.Log("sortedCalota: " + sortedCalota);
-            Debug.Log("Calota sorteada: " + queueToMelt[sortedCalota]);
+        sortedCalota = ChooseRandomCalota();
 
-            if(queueToMelt[sortedCalota].GetComponent<Calota>().willBeDestroyed == true)
-            {
-                Debug.Log("Sorteando outra calota");
-                sortedCalota = Random.Range(0, queueToMelt.Count - 1);
-            }
-            else
-            {
-                Debug.Log("MeltingCalota: " + queueToMelt[sortedCalota]);
-                MeltingCalota(queueToMelt[sortedCalota]);
-            }
-
-        }
-        else // Game Over
-        {
-            Debug.Log("Sem calotas para derreter");
-        }
+        Debug.Log("MeltingCalota: " + sortedCalota);
+        MeltingCalota(sortedCalota);
     }
 
     public void OnOffCalota(GameObject calota, bool enabled, bool isTrigged)
@@ -130,18 +136,13 @@ public class CalotasControllers : MonoBehaviour
     // função para ser usada pelo Magma_Creep
     public void DestroyCalota(GameObject calota)
     {
-        if ((queueToMelt.Contains(calota) == true))
+        if ((calotas.Contains(calota) == true))
         {
             OnOffCalota(calota, false, true);
             LeanTween.moveLocalY(calota.gameObject, Calota.meltedPosition, 5f);
-            if (calota.transform.GetComponent<Calota>().beingMelted == true)
-            {
-                calota.transform.GetComponent<Calota>().beingMelted = false;
-                haveOneMelting = false;
-            }
             calota.GetComponent<Calota>().willBeDestroyed = false;
             queueToRebuilt.Add(calota);
-            queueToMelt.Remove(calota);
+            calotas.Remove(calota);
         }
     }
 
@@ -169,7 +170,7 @@ public class CalotasControllers : MonoBehaviour
 
             OnOffCalota(calota, true, false);
 
-            if (queueToMelt.Contains(calota) == false) queueToMelt.Add(calota);
+            if (calotas.Contains(calota) == false) calotas.Add(calota);
 
             if (queueToRebuilt.Contains(calota) == true) queueToRebuilt.Remove(calota);
         }

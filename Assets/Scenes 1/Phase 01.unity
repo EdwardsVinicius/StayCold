@@ -1440,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[5].timeToTheNextHorde
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[5].timeBetweenEnemies
@@ -1460,6 +1460,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[6].timeToTheNextHorde
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[0].timeToTheNextHorde
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[1].timeToTheNextHorde
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[2].timeToTheNextHorde
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[3].timeToTheNextHorde
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1995,7 +2011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6667754333380396364, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: limitTimerMelt
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8035116286452494721, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_Name

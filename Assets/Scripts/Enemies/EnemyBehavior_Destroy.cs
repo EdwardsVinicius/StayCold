@@ -150,23 +150,14 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
     private void ChooseIce()
     {
-        GameObject calota = GameObject.Find("CalotaHexagonal");
-        iceChoosed = calota.transform.GetChild(Random.Range(1, calota.transform.childCount - 1)).gameObject;
-        if (iceChoosed.GetComponent<Calota>().willBeDestroyed || iceChoosed.GetComponent<Calota>().beingMelted)
-        {
-            ChooseIce();
-        }
-        else
-        {
-            Debug.Log("Ice Choosed: " + iceChoosed.name);
-            iceChoosed.GetComponent<Calota>().willBeDestroyed = true;
-            // nextPos = new Vector3(iceChoosed.transform.localPosition.x, iceChoosed.transform.localPosition.y, iceChoosed.transform.localPosition.z);
-            nextPos = OnTheMiddle(iceChoosed);
-            // Debug.Log("nextPos: " + nextPos);
-            LookDirection(nextPos);
+        iceChoosed = GameObject.Find("CalotaHexagonal").GetComponent<CalotasControllers>().ChooseRandomCalota();
 
-            anim.SetTrigger("Running");
-        }
+        Debug.Log("Ice Choosed: " + iceChoosed.name);
+        iceChoosed.GetComponent<Calota>().willBeDestroyed = true;
+        nextPos = OnTheMiddle(iceChoosed);
+        LookDirection(nextPos);
+
+        anim.SetTrigger("Running");
     }
 
     private void MoveToIce()
