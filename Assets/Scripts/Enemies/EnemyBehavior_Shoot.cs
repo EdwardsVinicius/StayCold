@@ -217,6 +217,8 @@ public class EnemyBehavior_Shoot : MonoBehaviour
     {
         if (collision.CompareTag("Hitbox"))
         {
+            if (anim == null) return;
+
             HitboxController hitboxController = collision.GetComponent<HitboxController>();
 
             if (hitboxController != null) hitboxController.ActivatePlayerHitVFX();

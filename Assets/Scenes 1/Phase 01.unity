@@ -1440,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[5].timeToTheNextHorde
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[5].timeBetweenEnemies
@@ -1449,26 +1449,26 @@ PrefabInstance:
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[1].enemyObject
       value: 
-      objectReference: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+      objectReference: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[0].numberOfEnemies
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[7].timeToTheNextHorde
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[6].timeToTheNextHorde
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[0].timeToTheNextHorde
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[1].timeToTheNextHorde
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[2].timeToTheNextHorde
@@ -1476,8 +1476,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: horde.Array.data[3].timeToTheNextHorde
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[0].enemyObject
+      value: 
+      objectReference: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[0].timeBetweenEnemies
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[3].enemyObject
+      value: 
+      objectReference: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[3].numberOfEnemies
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[3].SpawnPositionIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
+      propertyPath: horde.Array.data[2].enemyObject
+      value: 
+      objectReference: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
 --- !u!1001 &1392998199
@@ -1765,6 +1793,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 422611389, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 439166479, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -2011,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6667754333380396364, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: limitTimerMelt
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8035116286452494721, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_Name
@@ -31403,10 +31435,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "NovosAdere\xE7os"
       objectReference: {fileID: 0}
-    - target: {fileID: 930564142888554864, guid: 1a20489311705744888b5b222e5c9094, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 930564142888554865, guid: 1a20489311705744888b5b222e5c9094, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -36368,6 +36396,14 @@ PrefabInstance:
     - target: {fileID: 7768122591846305301, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731988978797940948, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      propertyPath: timeToStartSeekExplosion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731988978797940948, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      propertyPath: explosionCountLimit
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
@@ -75717,7 +75753,7 @@ PrefabInstance:
       objectReference: {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: isMultiplayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: singleplayer
