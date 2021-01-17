@@ -12,6 +12,7 @@ public class Bear : MonoBehaviour
     public float attackDuration = 0;
     public float hitboxDuration = 0.15f;
     private CharacterController controller;
+    public bool isAttacking;
 
     //Teste gravidade
     public float gravityValue = -9.81f;
@@ -95,6 +96,7 @@ public class Bear : MonoBehaviour
         canPickUpSnowBall = true;
         dead = false;
         hasSnowBall = false;
+        isAttacking = false;
         controller = GetComponent<CharacterController>();
         anim = bear.gameObject.GetComponent<Animator>();
         rebuiltIce = GameObject.Find("CalotaHexagonal").GetComponent<RebuiltIce>();
@@ -203,16 +205,25 @@ public class Bear : MonoBehaviour
             //Setar animator attack 
             sounds[1].Play();
             anim.SetTrigger("bearAttack");
+            StartCoroutine(TriggerIsAttackingBool());
         }
+    }
+
+    IEnumerator TriggerIsAttackingBool()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(attackDuration);
+        isAttacking = false;
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision entered");
+        // Debug.Log("Collision entered");
+        // quando colide com o inimigo isso acontece
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            LoseHealth(25);
+            if(!isAttacking) LoseHealth(25);
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -223,6 +234,7 @@ public class Bear : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Quando ela ataca isso acontece
         // Debug.Log("Colidindo com: " + other);
         if (other.gameObject.CompareTag("Enemy"))
         {
