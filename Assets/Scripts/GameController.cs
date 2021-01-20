@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public static bool splashAlreadyAppeared;
+
     public void ChangeScene(string sceneName){
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
