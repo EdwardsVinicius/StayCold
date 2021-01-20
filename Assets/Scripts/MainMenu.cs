@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -8,17 +7,20 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        splashScreen.SetActive(true);
-        StartCoroutine(disableSplashScreen());
+        if(GameController.splashAlreadyAppeared == false)
+        {
+            splashScreen.SetActive(true);
+            StartCoroutine(DisableSplashScreen());
+        }    
     }
 
-    IEnumerator disableSplashScreen()
+    IEnumerator DisableSplashScreen()
     {
         yield return new WaitForSeconds(3f);
         LeanTween.alphaCanvas(splashScreen.GetComponent<CanvasGroup>(), 0, 0.5f);
 
         yield return new WaitForSeconds(1.1f);
+        GameController.splashAlreadyAppeared = true;
         splashScreen.SetActive(false);
-
     }
 }
