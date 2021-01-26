@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MAT_WaterColor
+  m_Shader: {fileID: 4800000, guid: d289f1ff4a739bf428f5254d1418571e, type: 3}
+  m_ShaderKeywords: _MAINFOAMPOWER_ON _REALTIMEREFLETCIONS_ON _VERTEXOFFSET_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FaomTexture:
+        m_Texture: {fileID: 2800000, guid: 40c0bdd1723ac62428469d06c0ebba28, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTxt:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WavesNormal:
+        m_Texture: {fileID: 2800000, guid: bfa4d4c3e67527f4da5d64d649289f36, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WavesTexture:
+        m_Texture: {fileID: 2800000, guid: bfa4d4c3e67527f4da5d64d649289f36, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _COlorsPosition1: 2.85
+    - _ColorsPosition: 2.09
+    - _ColorsPositions0: 1.64
+    - _FaomDistance: 4.4
+    - _FoamScale: 50
+    - _FoamScale2: 5
+    - _FoamScale_copy: 5
+    - _FoamSpeed: 0.14
+    - _FoamSpeed2: 0.2
+    - _FoamSpeed_copy: 0.2
+    - _FresnelExponent: 2.31
+    - _MAinFoamOpacity: 1
+    - _MainFoamPower: 1
+    - _RealtimeRefletcions: 1
+    - _ReflectionIntesity: 0.47
+    - _SecondaryFOamIntensity: 0.54
+    - _SecondaryFoamDIstance: 1.71
+    - _SecondaryFoamScale: 10
+    - _SecondaryFoamSpeed: 0.14
+    - _VertexOffset: 1
+    - _WaveInstensity: 0.015
+    - _WaveSpeed: 0.7
+    - _WavesAmplitude: 10
+    - _node_3936: 0
+    - _node_6109: 0
+    m_Colors:
+    - _Deph0: {r: 0.24313726, g: 0.84313726, b: 0.8, a: 1}
+    - _Depth1: {r: 0.2901961, g: 0.4509804, b: 0.7176471, a: 1}
+    - _Depth2: {r: 0.1803922, g: 0.2117647, b: 0.4352941, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0.4485582, g: 0.9056604, b: 0.8727969, a: 1}
+    - _node_8747: {r: 0.4485582, g: 0.9056604, b: 0.8727969, a: 1}
+    - _node_8783: {r: 0.18039216, g: 0.21176471, b: 0.43529412, a: 1}
+  m_BuildTextureStacks: []
