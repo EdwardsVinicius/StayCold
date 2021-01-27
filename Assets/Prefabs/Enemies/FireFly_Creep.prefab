@@ -4938,7 +4938,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4166462945916727588}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!198 &1811504769915962983
 ParticleSystem:
@@ -14774,6 +14774,7 @@ Transform:
   m_Children:
   - {fileID: 3918032234602570588}
   - {fileID: 6855460494855454750}
+  - {fileID: 2090879581770461471}
   - {fileID: 3877460024998631668}
   - {fileID: 5942633352520666263}
   - {fileID: 5466148232081120450}
@@ -14865,6 +14866,7 @@ MonoBehaviour:
   enemyDrop: {fileID: 703668242940370505, guid: 982e1fdbdd017454eb236826c91ed287, type: 3}
   normal: 1
   bomb: 0
+  yCorrection: 1
   seekNearestPlayer: 0
   speed: 0
   timeToDeactivate: 5
@@ -14947,6 +14949,52 @@ MonoBehaviour:
   - tag: leftFootstep
     VFXPrefab: {fileID: 5466148232081120455}
     size: 3
+--- !u!1 &3741791297283912577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2090879581770461471}
+  - component: {fileID: 910641167545112639}
+  m_Layer: 0
+  m_Name: GroundFrontwardCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2090879581770461471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741791297283912577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.98, z: 2.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4166462945916727588}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910641167545112639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741791297283912577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64adec862c1610c49adbf8b19d71b2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getNewPosition:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4961403773520197075
 GameObject:
   m_ObjectHideFlags: 0
@@ -24631,7 +24679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4166462945916727588}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!198 &5466148232081120449
 ParticleSystem:
@@ -29501,7 +29549,7 @@ Transform:
   - {fileID: 3226642328865695848}
   - {fileID: 9127205428674308314}
   m_Father: {fileID: 4166462945916727588}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!1 &5942633350838555901
 GameObject:
@@ -44144,7 +44192,7 @@ Transform:
   - {fileID: 5942633352244035724}
   - {fileID: 5942633350838555902}
   m_Father: {fileID: 4166462945916727588}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6019380085806101703
 GameObject:

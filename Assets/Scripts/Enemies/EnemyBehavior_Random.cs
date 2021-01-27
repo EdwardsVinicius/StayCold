@@ -92,6 +92,11 @@ public class EnemyBehavior_Random : MonoBehaviour
             nextPos = GetNewPosition();
     }
 
+    public void NoGroundBeyondTreatment()
+    {
+        nextPos = transform.position;
+    }
+
     IEnumerator StopInPlace()
     {
         stopInPlaceCalled = true;
@@ -147,6 +152,7 @@ public class EnemyBehavior_Random : MonoBehaviour
     {
         if (collision.tag == "Hitbox")
         {
+            if (anim == null) return;
             collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
@@ -213,5 +219,12 @@ public class EnemyBehavior_Random : MonoBehaviour
 
             poolDictionary["leftFootstep"].Enqueue(leftFoot);
         }
+    }
+
+    public void AttachToGroundCheck()
+    {
+        EnemyGroundCheck groundCheck = transform.Find("GroundFrontwardCheck").GetComponent<EnemyGroundCheck>();
+
+        groundCheck.getNewPosition.AddListener(NoGroundBeyondTreatment);
     }
 }

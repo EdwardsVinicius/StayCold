@@ -2,21 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Wave;
 
 public class EnemySpawnController : MonoBehaviour
 {
-    public Enemy[] horde;
+    public Wave wave;
+
     public GameObject[] spawnVFXSamples;
     private float spawnDelay = 1.25f;
     private float victoryDelay = 3f;
+    private float waveDelay = 2f;
 
     private int enemiesAlive;
 
     private int hordeIndex;
+    private int waveIndex;
     private int enemyCount;
     private float enemyTimer;
     private float hordeTimer;
     private bool hordesIsOver = false;
+    private bool wavesIsOver = false;
+    private bool waveInterval = false;
     public GameObject victory;
 
     // Start is called before the first frame update
@@ -24,6 +30,7 @@ public class EnemySpawnController : MonoBehaviour
     {
         enemiesAlive = 0;
         hordeIndex = 0;
+        waveIndex = 0;
         enemyTimer = 0;
         hordeTimer = 0;
     }
@@ -31,10 +38,11 @@ public class EnemySpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (waveInterval) return;
+
         if (enemiesAlive <= 0 && hordesIsOver)
         {
-            hordesIsOver = false;
-            StartCoroutine(ActivateVictoryScreen());
+            StartCoroutine(GoToNextWave());
         }
 
         HordeController();
@@ -42,15 +50,19 @@ public class EnemySpawnController : MonoBehaviour
 
     private void HordeController()
     {
-        if(hordeIndex < horde.Length)
+        Hordes hordes = wave.getHordes()[waveIndex];
+
+        if (hordeIndex < hordes.enemies.Length)
         {
-            if (enemyCount < horde[hordeIndex].numberOfEnemies)
+            Enemy enemies = hordes.enemies[hordeIndex];
+
+            if (enemyCount < enemies.numberOfEnemies)
             {
                 enemyTimer += Time.deltaTime;
 
-                if(enemyTimer >= horde[hordeIndex].timeBetweenEnemies)
+                if (enemyTimer >= enemies.timeBetweenEnemies)
                 {
-                    StartCoroutine(InstantiateEnemy(horde[hordeIndex].enemyObject, transform.Find("Spawn" + horde[hordeIndex].SpawnPositionIndex).position));
+                    StartCoroutine(InstantiateEnemy(enemies.enemyObject, transform.Find("Spawn" + enemies.SpawnPositionIndex).position));
                     enemyTimer = 0;
                     enemyCount++;
                 }
@@ -59,7 +71,7 @@ public class EnemySpawnController : MonoBehaviour
             {
                 hordeTimer += Time.deltaTime;
 
-                if(hordeTimer >= horde[hordeIndex].timeToTheNextHorde)
+                if (hordeTimer >= enemies.timeToTheNextHorde)
                 {
                     hordeTimer = 0;
                     enemyCount = 0;
@@ -94,9 +106,29 @@ public class EnemySpawnController : MonoBehaviour
         hordesIsOver = true;
     }
 
-    IEnumerator ActivateVictoryScreen()
+    IEnumerator GoToNextWave()
     {
-        yield return new WaitForSeconds(victoryDelay);
+        waveInterval = true;
+        waveIndex++;
+
+        yield return new WaitForSeconds(waveDelay);
+        
+        if(waveIndex == wave.getHordes().Length)
+        {
+            ActivateVictoryScreen();
+        }
+        else
+        {
+            hordeTimer = 0;
+            enemyCount = 0;
+            hordeIndex = 0;
+            waveInterval = false;
+            hordesIsOver = false;
+        }
+    }
+
+    private void ActivateVictoryScreen()
+    {
         victory.SetActive(true);    
         Time.timeScale = 0;
     }

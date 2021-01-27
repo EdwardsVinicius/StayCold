@@ -157,6 +157,7 @@ public class EnemyBehavior_Fly : MonoBehaviour
         if (random)
         {
             GetComponent<EnemyBehavior_Random>().enabled = true;
+            GetComponent<EnemyBehavior_Random>().AttachToGroundCheck();
         }
         else if (seek)
         {
@@ -165,6 +166,7 @@ public class EnemyBehavior_Fly : MonoBehaviour
         else if (shoot)
         {
             GetComponent<EnemyBehavior_Shoot>().enabled = true;
+            GetComponent<EnemyBehavior_Shoot>().AttachToGroundCheck();
 
             GetComponent<EnemyBehavior_Instantiate>().seekNearestPlayer = true;
             GetComponent<EnemyBehavior_Instantiate>().applyGravity = false;
@@ -174,6 +176,7 @@ public class EnemyBehavior_Fly : MonoBehaviour
         else if (destroy)
         {
             GetComponent<EnemyBehavior_Destroy>().enabled = true;
+            GetComponent<EnemyBehavior_Destroy>().AttachToGroundCheck();
         }
 
         anim.SetTrigger("Running");
