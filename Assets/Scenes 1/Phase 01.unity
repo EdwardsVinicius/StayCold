@@ -75899,7 +75899,7 @@ PrefabInstance:
       objectReference: {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: isMultiplayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: singleplayer
@@ -75907,15 +75907,15 @@ PrefabInstance:
       objectReference: {fileID: 631200345242464583, guid: bd8d6ec5f34dfad498202cdc43d9250f, type: 3}
     - target: {fileID: 7122738998404707070, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707070, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707070, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.03
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707070, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: m_LocalRotation.x

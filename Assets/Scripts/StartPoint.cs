@@ -57,8 +57,8 @@ public class StartPoint: MonoBehaviour
                 var p2 = PlayerInput.Instantiate(multiplayer[1], controlScheme: "LeftKeyboard", pairWithDevice: Keyboard.current);
             }
 
-            multiplayer[0].transform.position = startPoint.position;
-            multiplayer[1].transform.position = startPoint.position;
+            multiplayer[0].transform.position = new Vector3 (startPoint.position.x+4, startPoint.position.y, startPoint.position.z);
+            multiplayer[1].transform.position = new Vector3(startPoint.position.x-4, startPoint.position.y, startPoint.position.z);
 
         }
         else
