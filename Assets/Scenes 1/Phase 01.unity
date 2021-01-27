@@ -75899,7 +75899,7 @@ PrefabInstance:
       objectReference: {fileID: 5814302479016455646, guid: 0317c90fe41c6884f83461a59ee905ad, type: 3}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: isMultiplayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7122738998404707041, guid: c470085fd1271c2458839fe1c2b2a306, type: 3}
       propertyPath: singleplayer
