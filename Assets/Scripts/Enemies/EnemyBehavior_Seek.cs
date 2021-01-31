@@ -108,10 +108,7 @@ public class EnemyBehavior_Seek : MonoBehaviour
         if (collision.CompareTag("Hitbox"))
         {
             if (anim == null) return;
-
-            HitboxController hitboxController = collision.GetComponent<HitboxController>();
-
-            if (hitboxController != null) hitboxController.ActivatePlayerHitVFX();
+            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }

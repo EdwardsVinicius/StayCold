@@ -21,6 +21,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     private float goToZ;
     private float seekTimer;
     private bool deathState;
+    private bool goingToDestroyIce = false;
     private bool stopInPlaceCalled;
     private bool firstTimeStop = true;
     private int explosionCount = 0;
@@ -89,6 +90,18 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         else
         {
             GoToIce();
+        }
+    }
+
+    public void NoGroundBeyondTreatment()
+    {
+        if (iceChoosed != null)
+        {
+            iceChoosed = null;
+        }
+        else
+        {
+            nextPos = transform.position;
         }
     }
 
@@ -243,10 +256,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         if (collision.CompareTag("Hitbox"))
         {
             if (anim == null) return;
-
-            HitboxController hitboxController = collision.GetComponent<HitboxController>();
-
-            if (hitboxController != null) hitboxController.ActivatePlayerHitVFX();
+            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }
@@ -349,5 +359,12 @@ public class EnemyBehavior_Destroy : MonoBehaviour
 
             poolDictionary["leftFootstep"].Enqueue(leftFoot);
         }
+    }
+
+    public void AttachToGroundCheck()
+    {
+        EnemyGroundCheck groundCheck = transform.Find("GroundFrontwardCheck").GetComponent<EnemyGroundCheck>();
+
+        groundCheck.getNewPosition.AddListener(NoGroundBeyondTreatment);
     }
 }

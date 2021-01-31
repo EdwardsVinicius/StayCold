@@ -13,6 +13,7 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
     public bool bomb = false;
 
     [Header("Common Shoot Parameters")]
+    public float yCorrection = 1f;
     public bool seekNearestPlayer;
     public float speed;
     public float timeToDeactivate;
@@ -41,9 +42,8 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
     public void TriggerFireInstance()
     {
         GameObject nextShoot = poolFire.Dequeue();
-
-        nextShoot.SetActive(true);
-        nextShoot.transform.position = transform.position;
+        
+        nextShoot.transform.position = new Vector3(transform.position.x, transform.position.y + yCorrection, transform.position.z);
 
         nextShoot.GetComponent<Rigidbody>().isKinematic = applyGravity ? false : true;
 
@@ -52,7 +52,10 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
         if (direction != null)
         {
             if (normal)
+            {
                 nextShoot.GetComponent<ShootBehavior>().DefineParams(direction.position, speed, timeToDeactivate);
+                nextShoot.GetComponent<ShootBehavior>().ResetFireball();
+            }
 
             else if (bomb)
                 nextShoot.GetComponent<BombBehavior>().DefineParams(direction.position, speed, timeToDeactivate, projectileNumber, projectileLifetime, speedProjectiles);
@@ -72,11 +75,15 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
         GameObject closest = null;
         float distance = Mathf.Infinity;
 
-        Vector3 position = transform.position;
+        Vector3 position = new Vector3(transform.position.x, 0f, transform.position.z);
 
         foreach (GameObject player in players)
         {
-            Vector3 diff = player.transform.position - position;
+            Vector3 playerYCorrection = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+            Vector3 diff = playerYCorrection - position;
+
+            Debug.Log(transform.position.y + yCorrection);
+            Debug.Log(diff.y);
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance)
             {
@@ -84,7 +91,9 @@ public class EnemyBehavior_Instantiate : MonoBehaviour
                 distance = curDistance;
             }
         }
+        Transform closestTransform = closest.transform;
+        closestTransform.position = new Vector3(closestTransform.position.x, transform.position.y + yCorrection, closestTransform.position.z);
 
-        return closest.transform;
+        return closestTransform;
     }
 }

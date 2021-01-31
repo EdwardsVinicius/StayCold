@@ -167,8 +167,8 @@ PrefabInstance:
       value: WaterPlane
       objectReference: {fileID: 0}
     - target: {fileID: 2419885174115606275, guid: 36a709aa135bb0b4db057b00e02e0db3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2419885174115606279, guid: 36a709aa135bb0b4db057b00e02e0db3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1238,7 +1238,7 @@ Transform:
   - {fileID: 649167274}
   - {fileID: 1547141759}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1249008802
 PrefabInstance:
@@ -1494,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95355172876429697, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95355172876429702, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1573,85 +1573,9 @@ PrefabInstance:
       value: -1.76
       objectReference: {fileID: 0}
     - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
       propertyPath: victory
       value: 
       objectReference: {fileID: 1027344582}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[5].numberOfEnemies
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[5].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[5].timeBetweenEnemies
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[1].enemyObject
-      value: 
-      objectReference: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[0].numberOfEnemies
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[7].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[6].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[0].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[1].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[2].timeToTheNextHorde
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[3].timeToTheNextHorde
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[0].enemyObject
-      value: 
-      objectReference: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[0].timeBetweenEnemies
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[3].enemyObject
-      value: 
-      objectReference: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[3].numberOfEnemies
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[3].SpawnPositionIndex
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7845512618190123037, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
-      propertyPath: horde.Array.data[2].enemyObject
-      value: 
-      objectReference: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ddd19b371fa4c4bbfaec7a79beea9f, type: 3}
 --- !u!1001 &1392998199
@@ -1691,7 +1615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3512808345199009664, guid: fcce1f7d7055ebf489dac806a3072565, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3512808345199009664, guid: fcce1f7d7055ebf489dac806a3072565, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1841,7 +1765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1547141759 stripped
 Transform:
@@ -2225,7 +2149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458200437018254347, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8458200437018254347, guid: 0aef1a57001ba81469f761f797b65683, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26717,6 +26641,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6078dcf0c6427fa488acf95fadf12f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToDeactivate: 0
+  fireballProjectile: {fileID: 0}
+  fireballExplosion: {fileID: 0}
+  explosionDuration: 1
 --- !u!135 &182124033578340346
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -31476,7 +31404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6836730004547126536, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36477,6 +36405,7 @@ MonoBehaviour:
   enemyDrop: {fileID: 4628687556223687707, guid: fd776bec3ec2f8d4faff9f1d0d68e0a6, type: 3}
   normal: 0
   bomb: 1
+  yCorrection: 1
   seekNearestPlayer: 1
   speed: 4
   timeToDeactivate: 3

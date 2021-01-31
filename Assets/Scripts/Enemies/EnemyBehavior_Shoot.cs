@@ -86,6 +86,11 @@ public class EnemyBehavior_Shoot : MonoBehaviour
             CheckGroundRaycast();
     }
 
+    public void NoGroundBeyondTreatment()
+    {
+        nextPos = transform.position;
+    }
+
     private void LookPlayer()
     {
         Transform nearestPlayer = ClosestPlayer();
@@ -218,10 +223,7 @@ public class EnemyBehavior_Shoot : MonoBehaviour
         if (collision.CompareTag("Hitbox"))
         {
             if (anim == null) return;
-
-            HitboxController hitboxController = collision.GetComponent<HitboxController>();
-
-            if (hitboxController != null) hitboxController.ActivatePlayerHitVFX();
+            collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
     }
@@ -287,5 +289,12 @@ public class EnemyBehavior_Shoot : MonoBehaviour
 
             poolDictionary["leftFootstep"].Enqueue(leftFoot);
         }
+    }
+
+    public void AttachToGroundCheck()
+    {
+        EnemyGroundCheck groundCheck = transform.Find("GroundFrontwardCheck").GetComponent<EnemyGroundCheck>();
+
+        groundCheck.getNewPosition.AddListener(NoGroundBeyondTreatment);
     }
 }
