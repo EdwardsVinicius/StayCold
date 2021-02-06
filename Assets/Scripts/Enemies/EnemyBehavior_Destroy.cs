@@ -8,6 +8,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     public float timeToStartSeekExplosion;
     public float speed;
     public float idleTime = 2;
+    public float idleTimeCache;
     public float deathTime = 1;
 
     [Header("VFXSamples")]
@@ -24,6 +25,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     private bool goingToDestroyIce = false;
     private bool stopInPlaceCalled;
     private bool firstTimeStop = true;
+    private bool instantMovementChoose = false;
     private int explosionCount = 0;
 
     private Vector3 nextPos;
@@ -48,6 +50,8 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        idleTimeCache = idleTime;
+
         GameObject edges = GameObject.Find("Edges");
         topRight = edges.transform.Find("TopRight").gameObject;
         bottomLeft = edges.transform.Find("BottomLeft").gameObject;
@@ -102,7 +106,14 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         else
         {
             nextPos = transform.position;
+            instantMovementChoose = true;
         }
+    }
+
+    public void GroundFoundTreatment()
+    {
+        instantMovementChoose = false;
+        idleTime = idleTimeCache;
     }
 
     IEnumerator StopInPlace()
@@ -122,6 +133,11 @@ public class EnemyBehavior_Destroy : MonoBehaviour
         nextPos = GetNewPosition();
 
         stopInPlaceCalled = false;
+
+        if (instantMovementChoose)
+        {
+            idleTime = 0;
+        }
     }
 
     private void GoToIce()

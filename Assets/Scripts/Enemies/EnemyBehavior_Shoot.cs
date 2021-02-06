@@ -20,6 +20,9 @@ public class EnemyBehavior_Shoot : MonoBehaviour
     private bool deathState;
     private bool stopInPlaceCalled;
     private bool firstTimeStop = true;
+    private bool dontShoot = false;
+    private bool lookingPlayer = false;
+    private bool instantMovementChoose = false;
 
     private RaycastHit checkGround;
     private Animator anim;
@@ -89,16 +92,26 @@ public class EnemyBehavior_Shoot : MonoBehaviour
     public void NoGroundBeyondTreatment()
     {
         nextPos = transform.position;
+        instantMovementChoose = true;
+    }
+
+    public void GroundFoundTreatment()
+    {
+        if (lookingPlayer) return;
+
+        instantMovementChoose = false;
+        dontShoot = false;
     }
 
     private void LookPlayer()
     {
+        lookingPlayer = true;
         Transform nearestPlayer = ClosestPlayer();
 
         if (nearestPlayer != null)
         {
             playerYCorretion = new Vector3(nearestPlayer.position.x, transform.position.y, nearestPlayer.position.z);
-            LookDirection();
+            LookDirection(playerYCorretion);
         }
     }
 
@@ -129,17 +142,14 @@ public class EnemyBehavior_Shoot : MonoBehaviour
         return closest.transform;
     }
 
-    private void LookDirection()
-    {
-        Vector3 direction = (playerYCorretion - transform.position);
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10f);
-
-        transform.eulerAngles += new Vector3(0f, 0f, 0f);
-    }
-
     private void ShootManagement()
     {
+        if (dontShoot)
+        {
+            nextPos = GetNewPosition();
+            return;
+        }
+
         if (shootCounter == 0 && shootTimer == 0)
         {
             anim.SetTrigger("Idle");
@@ -154,9 +164,13 @@ public class EnemyBehavior_Shoot : MonoBehaviour
             if (shootCounter > numberOfShootsWhileIdle)
             {
                 anim.SetTrigger("Running");
-                nextPos = GetNewPosition();
                 stopInPlaceCalled = false;
+                nextPos = GetNewPosition();
                 shootCounter = 0;
+
+                if (instantMovementChoose) {
+                    dontShoot = true;
+                }
             }
             else
             {
@@ -208,7 +222,7 @@ public class EnemyBehavior_Shoot : MonoBehaviour
         else
             return Vector3.positiveInfinity;
     }
-
+    
     private void LookDirection(Vector3 newPos)
     {
         Vector3 direction = (newPos - transform.position);
@@ -216,6 +230,7 @@ public class EnemyBehavior_Shoot : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10f);
 
         transform.eulerAngles += new Vector3(0f, 0f, 0f);
+        lookingPlayer = false;
     }
 
     private void OnTriggerEnter(Collider collision)

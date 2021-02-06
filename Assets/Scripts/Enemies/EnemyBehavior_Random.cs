@@ -6,6 +6,7 @@ public class EnemyBehavior_Random : MonoBehaviour
 {
     public float speed;
     public float idleTime = 2;
+    private float idleTimeCache;
     public float deathTime = 1;
     public GameObject deathSmokeVFXSample;
     public GameObject leftFootVFXSample;
@@ -18,6 +19,7 @@ public class EnemyBehavior_Random : MonoBehaviour
     private bool deathState;
     private bool stopInPlaceCalled;
     private bool firstTimeStop = true;
+    private bool instantMovementChoose = false;
 
     private RaycastHit checkGround;
     private Animator anim;
@@ -39,6 +41,8 @@ public class EnemyBehavior_Random : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        idleTimeCache = idleTime;
+
         GameObject edges = GameObject.Find("Edges");
         topRight = edges.transform.Find("TopRight").gameObject;
         bottomLeft = edges.transform.Find("BottomLeft").gameObject;
@@ -95,6 +99,13 @@ public class EnemyBehavior_Random : MonoBehaviour
     public void NoGroundBeyondTreatment()
     {
         nextPos = transform.position;
+        instantMovementChoose = true;
+    }
+
+    public void GroundFoundTreatment()
+    {
+        instantMovementChoose = false;
+        idleTime = idleTimeCache;
     }
 
     IEnumerator StopInPlace()
@@ -114,6 +125,11 @@ public class EnemyBehavior_Random : MonoBehaviour
         nextPos = GetNewPosition();
 
         stopInPlaceCalled = false;
+
+        if (instantMovementChoose)
+        {
+            idleTime = 0;
+        }
     }
 
     private Vector3 GetNewPosition()

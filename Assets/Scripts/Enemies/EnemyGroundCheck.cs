@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class EnemyGroundCheck : MonoBehaviour
 {
     [SerializeField] public UnityEvent getNewPosition;
+    [SerializeField] public UnityEvent groundFound;
 
     // Update is called once per frame
     void Update()
@@ -19,7 +20,7 @@ public class EnemyGroundCheck : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out checkGround, 10f))
         {
-            return;
+            groundFound.Invoke();
         }
         else
             getNewPosition.Invoke();
