@@ -95,7 +95,7 @@ public class CalotasControllers : MonoBehaviour
     {
         sortedCalota = ChooseRandomCalota();
 
-        Debug.Log("MeltingCalota: " + sortedCalota);
+        // Debug.Log("MeltingCalota: " + sortedCalota);
         MeltingCalota(sortedCalota);
     }
 
