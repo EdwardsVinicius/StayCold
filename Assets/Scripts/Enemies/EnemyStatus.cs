@@ -26,7 +26,7 @@ public class EnemyStatus : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
+        // Debug.Log("collision");
         if (collision.gameObject.tag == "Hitbox")
         {
             //sounds[0].Play();

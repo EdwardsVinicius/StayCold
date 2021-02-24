@@ -27,7 +27,7 @@ public class ThrowableSnowBall : MonoBehaviour
     {
 
         //Debug.Log("Collision entered");
-        if (collider.gameObject.CompareTag("Ground"))
+        if (collider.gameObject.CompareTag("Ground") && !FindObjectOfType<Bear>().isAttacking)
         {
             GameObject calota = collider.transform.parent.gameObject.transform.parent.gameObject; // take the grandfather
             // Debug.Log("colisao com Ground " + calota.name);
@@ -36,6 +36,12 @@ public class ThrowableSnowBall : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Water"))
         {
+            Destroy(this.gameObject);
+            if (FindObjectOfType<Bear>().isAttacking) FindObjectOfType<Bear>().isAttacking = false;
+        }
+        else if (collider.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("colisao com o Inimigo");
             Destroy(this.gameObject);
         }
 

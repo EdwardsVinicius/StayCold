@@ -165,7 +165,7 @@ public class EnemyBehavior_Destroy : MonoBehaviour
     {
         iceChoosed = GameObject.Find("CalotaHexagonal").GetComponent<CalotasControllers>().ChooseRandomCalota();
 
-        Debug.Log("Ice Choosed: " + iceChoosed.name);
+        // Debug.Log("Ice Choosed: " + iceChoosed.name);
         iceChoosed.GetComponent<Calota>().willBeDestroyed = true;
         nextPos = OnTheMiddle(iceChoosed);
         LookDirection(nextPos);
