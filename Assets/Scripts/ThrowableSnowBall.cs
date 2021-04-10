@@ -15,7 +15,7 @@ public class ThrowableSnowBall : MonoBehaviour
         calotasControllers = FindObjectOfType<CalotasControllers>().GetComponent<CalotasControllers>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (rb.velocity.y < 0)
         {

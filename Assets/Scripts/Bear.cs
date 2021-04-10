@@ -196,7 +196,7 @@ public class Bear : MonoBehaviour
     {
         // Debug.Log("Collision entered");
         // quando colide com o inimigo isso acontece
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.tag == "Projectile")
         {
             Debug.Log("Collision entered");
             if (!isAttacking) LoseHealth(25);
