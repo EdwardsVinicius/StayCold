@@ -156,6 +156,10 @@ public class EnemyBehavior_Random : MonoBehaviour
             collision.GetComponent<HitboxController>().ActivatePlayerHitVFX();
             StartCoroutine(ActiveDeathState());
         }
+        if (collision.CompareTag("SnowBall") && FindObjectOfType<Bear>().isAttacking)
+        {
+            StartCoroutine(ActiveDeathState());
+        }
     }
 
     IEnumerator ActiveDeathState()

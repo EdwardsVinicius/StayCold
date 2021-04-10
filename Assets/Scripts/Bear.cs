@@ -19,7 +19,7 @@ public class Bear : MonoBehaviour
     private Vector3 playerVelocity;
 
     public bool hasSnowBall;
-    public bool canPickUpSnowBall;
+    public bool canPickUpSnowBall; // necessario para o cooldown do especial
     public float snowBallCoolDownDuration;
     public float throwForce;
     public GameObject snowBall;
@@ -36,7 +36,7 @@ public class Bear : MonoBehaviour
     private AudioSource[] sounds;
 
     public LifeSlider slider;
-    public RebuiltIce rebuiltIce;
+    // public RebuiltIce rebuiltIce;
 
     //private UIController _uiController;
     InputManager controls;
@@ -52,41 +52,6 @@ public class Bear : MonoBehaviour
     private void Awake()
     {
         controls = new InputManager();
-
-        //playerInput = GetComponent<PlayerInput>();
-
-        //GameObject startPoint = GameObject.FindGameObjectWithTag("StartPoint");
-        //script = startPoint.GetComponent<StartPoint>();
-
-        //if (script.isMultiplayer)
-        //{
-
-        //    playerInput.SwitchCurrentActionMap("Player_2");
-
-        //    //controls.Player_2.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[1]);
-
-        //    controls.Player_2.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        //    controls.Player_2.Move.canceled += ctx => move = Vector2.zero;
-
-        //    controls.Player_2.Attack.performed += ctx => Attack();
-
-        //}
-        //else
-        //{
-        //    controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        //    controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
-
-        //    controls.Gameplay.Attack.performed += ctx => Attack();
-
-        //}
-
-        //controls.Gameplay.Get().ApplyBindingOverridesOnMatchingControls(Joystick.all[1]);
-
-        //controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        //controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
-
-        //controls.Gameplay.Attack.performed += ctx => Attack();
-
     }
 
     // Start is called before the first frame update
@@ -96,13 +61,13 @@ public class Bear : MonoBehaviour
         canPickUpSnowBall = true;
         dead = false;
         hasSnowBall = false;
+        special = false;
         isAttacking = false;
-        controller = GetComponent<CharacterController>();
-        anim = bear.gameObject.GetComponent<Animator>();
-        rebuiltIce = GameObject.Find("CalotaHexagonal").GetComponent<RebuiltIce>();
-        slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
 
+        controller = GetComponent<CharacterController>();
         sounds = GetComponents<AudioSource>();
+        anim = bear.gameObject.GetComponent<Animator>();
+        slider = GameObject.Find("HolderBearHUD/Slider").GetComponent<LifeSlider>();
     }
 
     // Update is called once per frame
@@ -127,9 +92,6 @@ public class Bear : MonoBehaviour
 
     private void Move()
     {
-        //float horizontal = Input.GetAxisRaw("Horizontal");
-        //float vertical = Input.GetAxisRaw("Vertical");
-
         Vector3 direction = new Vector3(move.x, 0f, move.y).normalized;
 
         if (direction.magnitude > 0.1f)
@@ -151,19 +113,16 @@ public class Bear : MonoBehaviour
         playerVelocity.y = gravityValue;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
     private void PickUpSnow()
     {
-        //inserir bottão de ataque
         if (special && !hasSnowBall)
         {
             sounds[0].Play();
-            //anim.SetBool("bearHasSnowBall", true);
-            //Debug.Log("snow ball " + hasSnowBall.ToString());
             hasSnowBall = true;
             snowBall.SetActive(true);
             anim.SetBool("bearHasSnowBall", true);
-
-            //StartCoroutine(ShowHitboxForSeconds(attackDuration));            
+            //Debug.Log("snow ball " + hasSnowBall.ToString());
         }
 
         special = false;
@@ -173,7 +132,7 @@ public class Bear : MonoBehaviour
     {
         canPickUpSnowBall = false;
         yield return new WaitForSeconds(time);
-        //rebuiltIce.rebuiltPlatform();
+
         canPickUpSnowBall = true;
     }
 
@@ -200,30 +159,47 @@ public class Bear : MonoBehaviour
 
     private void Attack()
     {
-        if (!hasSnowBall && !dead)
+        if (hasSnowBall && !dead)
         {
-            //Setar animator attack 
+            //Setar animator attack
+            isAttacking = true;
             sounds[1].Play();
-            anim.SetTrigger("bearAttack");
-            StartCoroutine(TriggerIsAttackingBool());
+            // anim.SetTrigger("bearAttack");
+
+            //Setar animator throwing
+            hasSnowBall = false;
+            snowBall.SetActive(false);
+
+            Rigidbody throwableSnowBallInstance;
+            throwableSnowBallInstance = Instantiate(throwableSnowBall, snowBallSpawn.position, snowBallSpawn.rotation) as Rigidbody;
+            throwableSnowBallInstance.AddForce(snowBallSpawn.up * throwForce);
+
+            
+            anim.SetBool("bearHasSnowBall", false);
+            anim.SetTrigger("bearThrow");
+            // StartCoroutine(TriggerIsAttackingBool());
+            // isAttacking = false;
         }
     }
 
+    /*
     IEnumerator TriggerIsAttackingBool()
     {
-        isAttacking = true;
+        // isAttacking = true;
         yield return new WaitForSeconds(attackDuration);
         isAttacking = false;
     }
+    */
 
 
     private void OnCollisionEnter(Collision collision)
     {
         // Debug.Log("Collision entered");
         // quando colide com o inimigo isso acontece
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.tag == "Projectile")
         {
-            if(!isAttacking) LoseHealth(25);
+            Debug.Log("Collision entered");
+            if (!isAttacking) LoseHealth(25);
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -271,7 +247,9 @@ public class Bear : MonoBehaviour
 
     private void LoseHealth(int amount)
     {
-        Debug.Log("losthealth");
+        
+        Debug.Log("Lost Health");
+
         health -= amount;
         if (health < 0)
         {
@@ -336,19 +314,12 @@ public class Bear : MonoBehaviour
 
     public void OnAttack(CallbackContext context)
     {
-        if (context.performed)
-        {
-            Attack();
-        }
+        if (context.performed) Attack();
     }
 
     public void OnSpecial(CallbackContext context)
     {
-        if (context.performed)
-        {
-            special = true;
-        }
+        if (context.performed) special = true;
     }
-
 }
 

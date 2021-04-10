@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     private EventSystem _event;
+    public GameObject gameHUD;
     public GameObject pauseMenuUI;
     public GameObject configMenuUI;
     public GameObject firstToSelect;
@@ -57,6 +58,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        gameHUD.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
         _event.SetSelectedGameObject(null);
@@ -66,6 +68,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        gameHUD.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
