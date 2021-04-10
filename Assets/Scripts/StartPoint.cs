@@ -35,6 +35,12 @@ public class StartPoint: MonoBehaviour
         //}
 
         //Gambiarra activate
+
+        if(PlayerPrefs.HasKey("Mode"))
+        {
+            isMultiplayer = bool.Parse(PlayerPrefs.GetString("Mode"));
+        } 
+
         Instantiate(gambiarraBox, new Vector3(-70, 17, -15), Quaternion.identity);
 
         if (isMultiplayer)

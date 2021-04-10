@@ -19,6 +19,10 @@ public class GameController : MonoBehaviour
          Application.Quit();
     }
 
+    public void selectGameMode(bool state){
+        PlayerPrefs.SetString("Mode", state.ToString());
+    }
+
     public void saveChanges(){
         PlayerPrefs.Save();
     }
