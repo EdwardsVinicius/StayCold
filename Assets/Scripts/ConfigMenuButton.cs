@@ -9,6 +9,7 @@ public class ConfigMenuButton : MonoBehaviour
     public Sprite onButton;
     public Sprite offButton;
     public AudioMixer audio;
+    public Slider volume;
     private bool state;
 
     public Image imageButton;
@@ -28,10 +29,7 @@ public class ConfigMenuButton : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void Update()
-    {
-        
-    }*/
+    // void Update(){}
 
     public void switchButton()
     {
@@ -40,11 +38,16 @@ public class ConfigMenuButton : MonoBehaviour
         if(state)
         {
             imageButton.sprite = onButton;
-            audio.SetFloat("VolumeMaster", 0);
+            audio.SetFloat("VolumeMaster", -10);
         }else
         {
             imageButton.sprite = offButton;
             audio.SetFloat("VolumeMaster", -80);
         }
+    }
+
+    public void SetVolume()
+    {
+        audio.SetFloat("VolumeMaster", Mathf.Log10(volume.value) * 20);
     }
 }
