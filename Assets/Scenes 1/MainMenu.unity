@@ -1944,6 +1944,7 @@ MonoBehaviour:
   onButton: {fileID: 21300000, guid: 1bf053769a0a9b84fb1a8508ca35b135, type: 3}
   offButton: {fileID: 21300000, guid: 7dc802041fff0f24493099b8bb84a292, type: 3}
   audio: {fileID: 24100000, guid: 5d17ebd6c2675a74d9fd3b23990ad55e, type: 2}
+  volume: {fileID: 961468497}
   imageButton: {fileID: 1954926900}
 --- !u!222 &424475380
 CanvasRenderer:
@@ -4177,17 +4178,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 105098178}
   m_HandleRect: {fileID: 1701610804}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.0001
+  m_MaxValue: 0.3
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 24100000, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
-        m_TargetAssemblyTypeName: UnityEditor.Audio.AudioMixerController, UnityEditor
-        m_MethodName: set_currentViewIndex
-        m_Mode: 3
+      - m_Target: {fileID: 1059947432}
+        m_TargetAssemblyTypeName: ConfigMenuButton, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4321,17 +4322,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 559408851}
   m_HandleRect: {fileID: 1559218937}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.0001
+  m_MaxValue: 0.3
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 24100000, guid: 5d17ebd6c2675a74d9fd3b23990ad55e, type: 2}
-        m_TargetAssemblyTypeName: UnityEditor.Audio.AudioMixerController, UnityEditor
-        m_MethodName: set_currentViewIndex
-        m_Mode: 3
+      - m_Target: {fileID: 424475379}
+        m_TargetAssemblyTypeName: ConfigMenuButton, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4915,6 +4916,7 @@ MonoBehaviour:
   onButton: {fileID: 21300000, guid: 1bf053769a0a9b84fb1a8508ca35b135, type: 3}
   offButton: {fileID: 21300000, guid: 7dc802041fff0f24493099b8bb84a292, type: 3}
   audio: {fileID: 24100000, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
+  volume: {fileID: 944913470}
   imageButton: {fileID: 52888865}
 --- !u!114 &1059947433
 MonoBehaviour:
