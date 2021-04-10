@@ -11,13 +11,17 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
-    // public void CloseGame(){
-    //     #if UNITY_EDITOR
-    //     if(UnityEditor.EditorApplication.isPlaying)
-    //         UnityEditor.EditorApplication.isPlaying = false;
-    //     #endif 
-    //     Application.Quit();
-    // }
+    public void CloseGame(){
+         #if UNITY_EDITOR
+         if(UnityEditor.EditorApplication.isPlaying)
+             UnityEditor.EditorApplication.isPlaying = false;
+         #endif 
+         Application.Quit();
+    }
+
+    public void selectGameMode(bool state){
+        PlayerPrefs.SetString("Mode", state.ToString());
+    }
 
     public void saveChanges(){
         PlayerPrefs.Save();
