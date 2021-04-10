@@ -11,15 +11,16 @@ public class ActiveWhenSelected : MonoBehaviour
     public GameObject texto;
     private int selectedSize = 120;
     private int unselectedSize = 70;
-    public float valueToAddPosition = 20;
-    private float Y;
-    private float X;
+    private float valueToAddPosition = 20;
+    private float y;
+    private float x;
+    private bool change=false;
 
     void Start()
     {
         _event = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        x = transform.postion.x;
-        y = transform.postion.y;
+        x = transform.position.x;
+        y = transform.position.y;
     }
 
     void Update()
@@ -27,12 +28,15 @@ public class ActiveWhenSelected : MonoBehaviour
         if(_event.currentSelectedGameObject == gameObject){
             ChangeImageState(true);
             ChangeFontSize(selectedSize);
+            ChangeTextPosition(true);
+            change=true;
         }else{
             if(imagem.activeSelf)
             {
                 ChangeImageState(false);
                 ChangeFontSize(unselectedSize);
                 ChangeTextPosition(false);
+                change=false;
             }
         }
     }
@@ -50,9 +54,9 @@ public class ActiveWhenSelected : MonoBehaviour
     {
         if(bol)
         {
-            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y+20);
+            transform.position = new Vector2(x, y);
         }else{
-            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+            transform.position = new Vector2(x, y);
         }
 
     }

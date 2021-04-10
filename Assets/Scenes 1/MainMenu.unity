@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 572735230}
+    m_SelectOnDown: {fileID: 327518121}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 0
@@ -294,10 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagem: {fileID: 1237855197}
-  texto: {fileID: 0}
-  selectedSize: 0
-  unselectedSize: 0
-  valueToAddPosition: 0
+  texto: {fileID: 1401818384}
 --- !u!1 &103175145
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,9 +766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 32654898}
+    m_SelectOnDown: {fileID: 664723934}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 0
@@ -799,9 +796,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 953117999}
+      - m_Target: {fileID: 953117998}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: CloseGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -862,10 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagem: {fileID: 1215720490}
-  texto: {fileID: 0}
-  selectedSize: 0
-  unselectedSize: 0
-  valueToAddPosition: 0
+  texto: {fileID: 1914632248}
 --- !u!1 &342610611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &570420785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1513,10 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagem: {fileID: 189079698}
-  texto: {fileID: 0}
-  selectedSize: 0
-  unselectedSize: 0
-  valueToAddPosition: 0
+  texto: {fileID: 227420164}
 --- !u!114 &572735230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,9 +1521,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1951887847}
+    m_SelectOnDown: {fileID: 32654898}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 0
@@ -1724,9 +1715,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 327518121}
+    m_SelectOnDown: {fileID: 1951887847}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 0
@@ -1817,10 +1808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagem: {fileID: 1733621536}
-  texto: {fileID: 0}
-  selectedSize: 0
-  unselectedSize: 0
-  valueToAddPosition: 0
+  texto: {fileID: 1045912937}
 --- !u!1 &673924391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,7 +3022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1193594608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4472,10 +4460,10 @@ RectTransform:
   m_Father: {fileID: 891056505}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 27, y: -2}
-  m_SizeDelta: {x: 518.3418, y: 531.87994}
+  m_SizeDelta: {x: -79.6582, y: 531.87994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1896132414
 GameObject:
@@ -4920,9 +4908,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 664723934}
+    m_SelectOnDown: {fileID: 572735230}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 0
@@ -5037,10 +5025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagem: {fileID: 103175145}
-  texto: {fileID: 0}
-  selectedSize: 0
-  unselectedSize: 0
-  valueToAddPosition: 0
+  texto: {fileID: 2086874420}
 --- !u!1 &1954926899
 GameObject:
   m_ObjectHideFlags: 0
