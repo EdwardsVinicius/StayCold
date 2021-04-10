@@ -48,6 +48,18 @@ MonoBehaviour:
   player1: {fileID: 4603576742347317496}
   player2: {fileID: 258420763252208470}
   follow: {fileID: 0}
+--- !u!114 &650369145574831517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603576742980079821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1a1b2b8cee12c41b72150167bec4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &91891265429363488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,5 +264,10 @@ GameObject:
 --- !u!4 &4603576742347317503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1885847061373348391, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
+  m_PrefabInstance: {fileID: 2722689037835160280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4603576742980079821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1885847060999051797, guid: ea50144fe6b56c54ebfe999c63d2e941, type: 3}
   m_PrefabInstance: {fileID: 2722689037835160280}
   m_PrefabAsset: {fileID: 0}
