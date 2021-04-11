@@ -50,39 +50,40 @@ public class EnemySpawnController : MonoBehaviour
 
     private void HordeController()
     {
-        Hordes hordes = wave.getHordes()[waveIndex];
-
-        if (hordeIndex < hordes.enemies.Length)
+        if(!wavesIsOver)
         {
-            Enemy enemies = hordes.enemies[hordeIndex];
+            Hordes hordes = wave.getHordes()[waveIndex];
 
-            if (enemyCount < enemies.numberOfEnemies)
+            if (hordeIndex < hordes.enemies.Length)
             {
-                enemyTimer += Time.deltaTime;
+                Enemy enemies = hordes.enemies[hordeIndex];
 
-                if (enemyTimer >= enemies.timeBetweenEnemies)
+                if (enemyCount < enemies.numberOfEnemies)
                 {
-                    StartCoroutine(InstantiateEnemy(enemies.enemyObject, transform.Find("Spawn" + enemies.SpawnPositionIndex).position));
-                    enemyTimer = 0;
-                    enemyCount++;
+                    enemyTimer += Time.deltaTime;
+
+                    if (enemyTimer >= enemies.timeBetweenEnemies)
+                    {
+                        StartCoroutine(InstantiateEnemy(enemies.enemyObject, transform.Find("Spawn" + enemies.SpawnPositionIndex).position));
+                        enemyTimer = 0;
+                        enemyCount++;
+                    }
                 }
-            }
-            else
+                else
+                {
+                    hordeTimer += Time.deltaTime;
+
+                    if (hordeTimer >= enemies.timeToTheNextHorde)
+                    {
+                        hordeTimer = 0;
+                        enemyCount = 0;
+                        hordeIndex++;
+                    }
+                }
+            }else
             {
-                hordeTimer += Time.deltaTime;
-
-                if (hordeTimer >= enemies.timeToTheNextHorde)
-                {
-                    hordeTimer = 0;
-                    enemyCount = 0;
-                    hordeIndex++;
-                }
+                HordesIsOver();
             }
-        }
-
-        else
-        {
-            HordesIsOver();
         }
     }
 
@@ -115,6 +116,7 @@ public class EnemySpawnController : MonoBehaviour
         
         if(waveIndex == wave.getHordes().Length)
         {
+            wavesIsOver=true;
             ActivateVictoryScreen();
         }
         else
