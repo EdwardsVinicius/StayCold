@@ -49,42 +49,57 @@ MonoBehaviour:
     - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
       SpawnPositionIndex: 1
       numberOfEnemies: 1
-      timeBetweenEnemies: 3
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 1
+    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       SpawnPositionIndex: 2
       numberOfEnemies: 1
-      timeBetweenEnemies: 2
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 3
+    - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
       SpawnPositionIndex: 3
-      numberOfEnemies: 2
+      numberOfEnemies: 1
       timeBetweenEnemies: 4
       timeToTheNextHorde: 1
     - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
       SpawnPositionIndex: 4
       numberOfEnemies: 1
-      timeBetweenEnemies: 2
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 2
+    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       SpawnPositionIndex: 5
-      numberOfEnemies: 2
-      timeBetweenEnemies: 3
+      numberOfEnemies: 1
+      timeBetweenEnemies: 0
       timeToTheNextHorde: 0
   - enemies:
     - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
       SpawnPositionIndex: 4
-      numberOfEnemies: 7
-      timeBetweenEnemies: 1
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
+      numberOfEnemies: 1
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 1
+    - enemyObject: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
       SpawnPositionIndex: 1
       numberOfEnemies: 2
-      timeBetweenEnemies: 0.5
-      timeToTheNextHorde: 0
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 0.5
+    - enemyObject: {fileID: 6173064117997871026, guid: 96721807e9c1e074698c38cac44eb3ab, type: 3}
+      SpawnPositionIndex: 6
+      numberOfEnemies: 1
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 0.5
     - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
       SpawnPositionIndex: 6
+      numberOfEnemies: 1
+      timeBetweenEnemies: 2
+      timeToTheNextHorde: 0
+    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      SpawnPositionIndex: 6
       numberOfEnemies: 2
+      timeBetweenEnemies: 3
+      timeToTheNextHorde: 1
+    - enemyObject: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
+      SpawnPositionIndex: 6
+      numberOfEnemies: 1
       timeBetweenEnemies: 0.5
       timeToTheNextHorde: 0
   - enemies:
@@ -92,34 +107,29 @@ MonoBehaviour:
       SpawnPositionIndex: 1
       numberOfEnemies: 1
       timeBetweenEnemies: 0
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
-      SpawnPositionIndex: 3
-      numberOfEnemies: 1
-      timeBetweenEnemies: 0
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
-      SpawnPositionIndex: 5
-      numberOfEnemies: 1
-      timeBetweenEnemies: 0
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
-      SpawnPositionIndex: 6
-      numberOfEnemies: 1
-      timeBetweenEnemies: 0
-      timeToTheNextHorde: 0
+      timeToTheNextHorde: 0.5
     - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      SpawnPositionIndex: 2
+      numberOfEnemies: 2
+      timeBetweenEnemies: 1
+      timeToTheNextHorde: 1
+    - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
+      SpawnPositionIndex: 4
+      numberOfEnemies: 1
+      timeBetweenEnemies: 0
+      timeToTheNextHorde: 3
+    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
+      SpawnPositionIndex: 6
+      numberOfEnemies: 2
+      timeBetweenEnemies: 1
+      timeToTheNextHorde: 2
+    - enemyObject: {fileID: 3646208525702654878, guid: 156a6ec176379924bb354165d878175a, type: 3}
       SpawnPositionIndex: 1
       numberOfEnemies: 1
       timeBetweenEnemies: 0
       timeToTheNextHorde: 0
-    - enemyObject: {fileID: 6955311526649517231, guid: 1d1aaecbca368954e9da305aa6c8c7d9, type: 3}
-      SpawnPositionIndex: 2
-      numberOfEnemies: 1
-      timeBetweenEnemies: 0
-      timeToTheNextHorde: 0
-    - enemyObject: {fileID: 6173064117997871026, guid: c283652dbf7b4ad40b6b9fc137e8472f, type: 3}
-      SpawnPositionIndex: 4
-      numberOfEnemies: 1
+    - enemyObject: {fileID: 5628401508922229696, guid: ff2abbac09b23494c96e808ae7caeab3, type: 3}
+      SpawnPositionIndex: 3
+      numberOfEnemies: 2
       timeBetweenEnemies: 0
       timeToTheNextHorde: 0
