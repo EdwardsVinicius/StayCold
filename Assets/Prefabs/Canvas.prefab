@@ -231,6 +231,7 @@ MonoBehaviour:
   onButton: {fileID: 21300000, guid: 1bf053769a0a9b84fb1a8508ca35b135, type: 3}
   offButton: {fileID: 21300000, guid: 7dc802041fff0f24493099b8bb84a292, type: 3}
   audio: {fileID: 24100000, guid: 4963eaf973369aa4ea34d2f662868f21, type: 2}
+  volume: {fileID: 0}
   imageButton: {fileID: 5645349790296324644}
 --- !u!1 &132827146041769110
 GameObject:
@@ -4396,6 +4397,7 @@ MonoBehaviour:
   onButton: {fileID: 21300000, guid: 1bf053769a0a9b84fb1a8508ca35b135, type: 3}
   offButton: {fileID: 21300000, guid: 7dc802041fff0f24493099b8bb84a292, type: 3}
   audio: {fileID: 24100000, guid: 5d17ebd6c2675a74d9fd3b23990ad55e, type: 2}
+  volume: {fileID: 0}
   imageButton: {fileID: 218875125675450010}
 --- !u!1 &7369597832548696717
 GameObject:
@@ -5516,7 +5518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Lost
+  m_Text: You lose!
 --- !u!1 &8740624729253035374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,7 +5673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Win
+  m_Text: You Win!
 --- !u!1 &8740624729896995300
 GameObject:
   m_ObjectHideFlags: 0
